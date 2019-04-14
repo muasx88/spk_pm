@@ -1,2 +1,2 @@
 # spk_pm
-Sistem Penunjang Keputusan Perumahan Muaslim
+Sistem Penunjang Keputusan Perumahan Muslim
