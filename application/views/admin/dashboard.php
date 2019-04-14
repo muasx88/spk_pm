@@ -1,1 +1,1 @@
-<h1>Halo</h1>
+<h1><?= $this->session->userdata('username');  ?></h1>
