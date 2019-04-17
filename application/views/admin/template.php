@@ -1,12 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('admin/_partials/header');
+$this->load->view('_partials/header');
+$this->load->view('_partials/layout');
+$this->load->view('_partials/sidebar');
 ?>
     <!-- Main Content -->
     <div class="main-content">
       <section class="section">
         <div class="section-header">
-          <h1>Blank Page</h1>
+          <h1><?= $title ?></h1>
         </div>
 
         <div class="section-body">
@@ -14,4 +16,4 @@ $this->load->view('admin/_partials/header');
         </div>
       </section>
     </div>
-<?php $this->load->view('admin/_partials/footer'); ?>
+<?php $this->load->view('_partials/footer'); ?>
