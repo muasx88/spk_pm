@@ -1,6 +1,6 @@
-<div class="card">
+<div class="card shadow">
   <div class="card-header">
-    <h4>Example Card</h4>
+    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
   </div>
   <div class="card-body">
 	<h1><?= $this->session->userdata('username');  ?></h1>
