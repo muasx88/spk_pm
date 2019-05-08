@@ -8,8 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>SB Admin 2 - Blank</title>
+  <link rel="shortcut icon" href="<?php echo base_url() ?>assets/img/home.png" />
+  <title>SPKPM &mdash; <?php echo $title; ?>  </title>
 
   <!-- Custom fonts for this template-->
   <link href="<?= base_url() ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

@@ -1,94 +1,69 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('_partials/header');
-?>
-<body>
-  <div id="app">
-    <section class="section">
-      <div class="container mt-5">
-        <div class="row">
-          <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-            <div class="login-brand">
-              <!-- <img src="<?php echo base_url(); ?>assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle"> -->
-              <h5>SPK-Perumahan Muslim</h5>
-              <!-- <h5>--Halaman Login--</h5> -->
-            </div>
+<?php $this->load->view('admin/partials/header'); ?>
 
-            <div class="card card-primary">
-              <div class="card-header"><h4>Halaman Login</h4></div>
-              <?php 
-              if ($this->session->flashdata('errors')) { ?>
-                <div class="alert alert-danger">
-                  <?= $this->session->flashdata('errors'); ?>
-                </div>
-              <?php }
-               ?>
-              <div class="card-body">
-                <form method="POST" action="<?php echo base_url('admin/auth/login') ?>" autocomplete="off">
-                  <div class="form-group">
-                    <label for="username">Username</label>
-                    <input id="username" type="text" class="form-control" name="username" tabindex="1" autofocus>
-                      <div class="text-muted">
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+      <div class="col-lg-7">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <!-- <div class="row"> -->
+              <!-- <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> -->
+              <!-- <div class="col-lg-6"> -->
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Halaman Login</h1>
+                  </div>
+                  <?php 
+                  if ($this->session->flashdata('errors')) { ?>
+                    <div class="alert alert-danger">
+                      <?= $this->session->flashdata('errors'); ?>
+                    </div>
+                  <?php } ?>
+                  <form class="user" method="POST" action="<?php echo base_url('admin/auth/login') ?>" autocomplete="off">
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="username" aria-describedby="username" name="username" placeholder="Username...">
+                      <div class="text-danger ml-2">
                         <?php echo form_error('username'); ?>
                       </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="d-block">
-                    	<label for="password" class="control-label">Password</label>
-                      <!-- <div class="float-right">
-                        <a href="<?php echo base_url(); ?>admin/auth_forgot_password" class="text-small">
-                          Forgot Password?
-                        </a>
-                      </div> -->
                     </div>
-                    <input id="password" type="password" class="form-control" name="password" tabindex="2">
-                      <div class="text-muted">
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password...">
+                      <div class="text-danger ml-2">
                         <?php echo form_error('password'); ?>
                       </div>
-                  </div>
-
-                  <!-- <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                      <label class="custom-control-label" for="remember-me">Remember Me</label>
                     </div>
-                  </div> -->
-
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                    <button type="submit" class="btn btn-primary btn-user btn-block">
                       Login
                     </button>
+                    <!-- <a href="index.html" class="btn btn-primary btn-user btn-block">
+                      Login
+                    </a> -->
+                    
+                  </form>
+                  <hr>
+                  <div class="text-center">
+                    <a class="small" href="forgot-password.html">Forgot Password?</a>
                   </div>
-                </form>
-                <!-- <div class="text-center mt-4 mb-3">
-                  <div class="text-job text-muted">Login With Social</div>
+                  <div class="text-center">
+                    <a class="small" href="register.html">Create an Account!</a>
+                  </div>
                 </div>
-                <div class="row sm-gutters">
-                  <div class="col-6">
-                    <a class="btn btn-block btn-social btn-facebook">
-                      <span class="fab fa-facebook"></span> Facebook
-                    </a>
-                  </div>
-                  <div class="col-6">
-                    <a class="btn btn-block btn-social btn-twitter">
-                      <span class="fab fa-twitter"></span> Twitter
-                    </a>                                
-                  </div>
-                </div> -->
-
-              </div>
-            </div>
-            <div class="mt-5 text-muted text-center">
-              Don't have an account? <a href="<?php echo base_url(); ?>dist/auth_register">Create One</a>
-            </div>
-            <div class="simple-footer">
-              Copyright &copy; SPK-PM <?= date('Y') ?>
-            </div>
+              <!-- </div> -->
+            <!-- </div> -->
           </div>
         </div>
+
       </div>
-    </section>
+
+    </div>
+
   </div>
 
-<?php $this->load->view('_partials/js'); ?>
+  <!-- Bootstrap core JavaScript-->
+<?php $this->load->view('admin/partials/footer'); ?>

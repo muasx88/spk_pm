@@ -6,7 +6,7 @@
   </button>
 
   <!-- Topbar Search -->
-  <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+ <!--  <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
       <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
       <div class="input-group-append">
@@ -15,7 +15,11 @@
         </button>
       </div>
     </div>
-  </form>
+  </form> -->
+  <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
+    <h4 class="text-gray-800"><?= $title ?></h4>
+    
+  </div>
 
   <!-- Topbar Navbar -->
   <ul class="navbar-nav ml-auto">
@@ -103,7 +107,7 @@
         </h6>
         <a class="dropdown-item d-flex align-items-center" href="#">
           <div class="dropdown-list-image mr-3">
-            <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
+            <img class="rounded-circle" src="<?= base_url()?>assets/img/avatar-1.png" alt="">
             <div class="status-indicator bg-success"></div>
           </div>
           <div class="font-weight-bold">
@@ -113,7 +117,7 @@
         </a>
         <a class="dropdown-item d-flex align-items-center" href="#">
           <div class="dropdown-list-image mr-3">
-            <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
+            <img class="rounded-circle" src="<?= base_url()?>assets/img/avatar-1.png" alt="">
             <div class="status-indicator"></div>
           </div>
           <div>
@@ -123,7 +127,7 @@
         </a>
         <a class="dropdown-item d-flex align-items-center" href="#">
           <div class="dropdown-list-image mr-3">
-            <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
+            <img class="rounded-circle" src="<?= base_url()?>assets/img/avatar-1.png" alt="">
             <div class="status-indicator bg-warning"></div>
           </div>
           <div>
@@ -133,7 +137,7 @@
         </a>
         <a class="dropdown-item d-flex align-items-center" href="#">
           <div class="dropdown-list-image mr-3">
-            <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
+            <img class="rounded-circle" src="<?= base_url()?>assets/img/avatar-1.png" alt="">
             <div class="status-indicator bg-success"></div>
           </div>
           <div>
@@ -150,8 +154,8 @@
     <!-- Nav Item - User Information -->
     <li class="nav-item dropdown no-arrow">
       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-        <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $this->session->userdata('name'); ?></span>
+        <img class="img-profile rounded-circle" src="<?= base_url()?>assets/img/avatar-1.png">
       </a>
       <!-- Dropdown - User Information -->
       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -178,3 +182,22 @@
   </ul>
 
 </nav>
+
+<!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="<?php echo base_url('admin/auth/logout') ?>">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
