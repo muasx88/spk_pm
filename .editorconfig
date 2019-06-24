@@ -12,5 +12,10 @@ insert_final_newline = true
 charset = utf-8
 
 # Tab indentation (no size specified)
+[*.php]
 indent_style = tab
 indent_size = 3
+
+[application/views/**.php]
+indent_style = tab
+indent_size = 2
