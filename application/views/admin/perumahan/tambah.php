@@ -25,7 +25,7 @@
 
 
 <!-- modal -->
-<!-- <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<form id="formPerumahan">
@@ -45,4 +45,4 @@
 			</form>
 		</div>
 	</div>
-</div> -->
+</div>
