@@ -4,12 +4,27 @@ class M_perumahan extends CI_Model {
 
 	public function getAll($tbl)
 	{
-		return $this->db->get($tbl);
+		return $this->db->order_by('id_perumahan', "DESC")->get($tbl);
 	}
 
 	public function insert($tbl, $data)
 	{
 		return $this->db->insert($tbl, $data);
+	}
+
+	public function getById($id, $tbl)
+	{
+		return $this->db->get_where($tbl, array('id_perumahan' =>  $id));
+	}
+
+	public function update($tbl, $data, $id)
+	{
+		return $this->db->where('id_perumahan', $id)->update($tbl, $data);
+	}
+
+	public function delete($tbl, $id)
+	{
+		return $this->db->where('id_perumahan', $id)->delete($tbl);
 	}
 
 }
