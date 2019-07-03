@@ -21,6 +21,7 @@ class Kriteria extends CI_Controller {
 		$data['kriteria_jarakkota'] = $this->model->getData("kriteria_jarakkota")->result();
 		$data['kriteria_jarakpasar'] = $this->model->getData("kriteria_jarakpasar")->result();
 		$data['kriteria_keamanan'] = $this->model->getData("kriteria_keamanan")->result();
+		$data['kriteria_fasilitas'] = $this->model->getData("kriteria_fasilitas")->result();
 
 		$this->template->load('admin/template','admin/kriteria/kriteria', $data);
 	}
@@ -248,6 +249,63 @@ class Kriteria extends CI_Controller {
 	public function deleteKriteriaKeamanan($id)
 	{
 		if ($this->model->delete('kriteria_keamanan', $id)) {
+			echo "success";
+		}
+	}
+
+
+	/*
+	====================================================
+	Fungi CRUD Kriteria Fasilitas
+	====================================================
+
+	*/
+
+	public function saveKriteriaFasilitas()
+	{
+		$id = $this->input->post("idKriteriaFasilitas");
+		if (empty($id)) {
+			$data = array(
+				'pilihan_kriteria' => $this->input->post("pilihanKriteriaFasilitas"),
+				'bobot' => $this->input->post("bobotKriteriaFasilitas")
+			);
+
+			if ($this->model->insert('kriteria_fasilitas', $data)) {
+				echo "success";
+			}else{
+				echo "failed";
+			}
+		}else{
+			$data = array(
+				'pilihan_kriteria' => $this->input->post("pilihanKriteriaFasilitas"),
+				'bobot' => $this->input->post("bobotKriteriaFasilitas")
+			);
+
+			if ($this->model->update('kriteria_fasilitas', $data,$id)) {
+				echo "success";
+			}else{
+				echo "failed";
+			}
+		}
+	}
+
+	public function getKriteriaFasilitasById($id)
+	{
+		$data = $this->model->getDataById("kriteria_fasilitas", $id);
+		foreach ($data->result_array() as $dt) {
+			$res = array(
+				'id_kriteria' => $dt['id_kriteria'],
+				'pilihan_kriteria'=>$dt['pilihan_kriteria'],
+				'bobot'=> $dt['bobot'] 
+			);
+		}
+
+		echo json_encode($res);
+	}
+
+	public function deleteKriteriaFasilitas($id)
+	{
+		if ($this->model->delete('kriteria_fasilitas', $id)) {
 			echo "success";
 		}
 	}
