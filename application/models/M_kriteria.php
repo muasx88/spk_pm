@@ -17,6 +17,16 @@ class M_kriteria extends CI_Model {
 		return $this->db->get_where($tbl, array('id_kriteria' => $id ));
 	}
 
+	public function update($tbl, $data, $id)
+	{
+		return $this->db->where('id_kriteria', $id)->update($tbl, $data);
+	}
+
+	public function delete($tbl, $id)
+	{
+		return $this->db->where('id_kriteria', $id)->delete($tbl);
+	}
+
 }
 
 /* End of file M_kriteria.php */

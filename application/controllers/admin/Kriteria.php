@@ -18,6 +18,7 @@ class Kriteria extends CI_Controller {
 		$data['title']= 'Kriteria';
 
 		$data['kriteria_harga'] = $this->model->getData("kriteria_harga")->result();
+		$data['kriteria_jarakkota'] = $this->model->getData("kriteria_jarakkota")->result();
 
 		$this->template->load('admin/template','admin/kriteria/kriteria', $data);
 	}
@@ -29,18 +30,31 @@ class Kriteria extends CI_Controller {
 
 	*/
 
-	public function addKriteriaHarga()
+	public function saveKriteriaHarga()
 	{
-		$message="";
-		$data = array(
-			'pilihan_kriteria' => $this->input->post("pilihanKriteriaHarga"),
-			'bobot' => $this->input->post("bobotKriteriaHarga")
-		);
+		$id = $this->input->post("idKriteriaHarga");
+		if (empty($id)) {
+			$data = array(
+				'pilihan_kriteria' => $this->input->post("pilihanKriteriaHarga"),
+				'bobot' => $this->input->post("bobotKriteriaHarga")
+			);
 
-		if ($this->model->insert('kriteria_harga', $data)) {
-			echo "success";
+			if ($this->model->insert('kriteria_harga', $data)) {
+				echo "success";
+			}else{
+				echo "failed";
+			}
 		}else{
-			echo "failed";
+			$data = array(
+				'pilihan_kriteria' => $this->input->post("pilihanKriteriaHarga"),
+				'bobot' => $this->input->post("bobotKriteriaHarga")
+			);
+
+			if ($this->model->update('kriteria_harga', $data,$id)) {
+				echo "success";
+			}else{
+				echo "failed";
+			}
 		}
 	}
 
@@ -57,6 +71,71 @@ class Kriteria extends CI_Controller {
 
 		echo json_encode($res);
 	}
+
+	public function deleteKriteriaHarga($id)
+	{
+		if ($this->model->delete('kriteria_harga', $id)) {
+			echo "success";
+		}
+	}
+
+
+	/*
+	====================================================
+	Fungi CRUD Kriteria Jarak Ke Kota
+	====================================================
+
+	*/
+
+	public function saveKriteriaJarakKota()
+	{
+		$id = $this->input->post("idKriteriaJarakKota");
+		if (empty($id)) {
+			$data = array(
+				'pilihan_kriteria' => $this->input->post("pilihanKriteriaJarakKota"),
+				'bobot' => $this->input->post("bobotKriteriaJarakKota")
+			);
+
+			if ($this->model->insert('kriteria_jarakkota', $data)) {
+				echo "success";
+			}else{
+				echo "failed";
+			}
+		}else{
+			$data = array(
+				'pilihan_kriteria' => $this->input->post("pilihanKriteriaJarakKota"),
+				'bobot' => $this->input->post("bobotKriteriaJarakKota")
+			);
+
+			if ($this->model->update('kriteria_jarakkota', $data,$id)) {
+				echo "success";
+			}else{
+				echo "failed";
+			}
+		}
+	}
+
+	public function getKriteriaJarakKotaById($id)
+	{
+		$data = $this->model->getDataById("kriteria_jarakkota", $id);
+		foreach ($data->result_array() as $dt) {
+			$res = array(
+				'id_kriteria' => $dt['id_kriteria'],
+				'pilihan_kriteria'=>$dt['pilihan_kriteria'],
+				'bobot'=> $dt['bobot'] 
+			);
+		}
+
+		echo json_encode($res);
+	}
+
+	public function deleteKriteriaJarakKota($id)
+	{
+		if ($this->model->delete('kriteria_jarakkota', $id)) {
+			echo "success";
+		}
+	}
+
 
 }
 
