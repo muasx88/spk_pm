@@ -19,6 +19,7 @@ class Kriteria extends CI_Controller {
 
 		$data['kriteria_harga'] = $this->model->getData("kriteria_harga")->result();
 		$data['kriteria_jarakkota'] = $this->model->getData("kriteria_jarakkota")->result();
+		$data['kriteria_jarakpasar'] = $this->model->getData("kriteria_jarakpasar")->result();
 
 		$this->template->load('admin/template','admin/kriteria/kriteria', $data);
 	}
@@ -132,6 +133,63 @@ class Kriteria extends CI_Controller {
 	public function deleteKriteriaJarakKota($id)
 	{
 		if ($this->model->delete('kriteria_jarakkota', $id)) {
+			echo "success";
+		}
+	}
+
+
+	/*
+	====================================================
+	Fungi CRUD Kriteria Jarak Ke Kota
+	====================================================
+
+	*/
+
+	public function saveKriteriaJarakPasar()
+	{
+		$id = $this->input->post("idKriteriaJarakPasar");
+		if (empty($id)) {
+			$data = array(
+				'pilihan_kriteria' => $this->input->post("pilihanKriteriaJarakPasar"),
+				'bobot' => $this->input->post("bobotKriteriaJarakPasar")
+			);
+
+			if ($this->model->insert('kriteria_jarakpasar', $data)) {
+				echo "success";
+			}else{
+				echo "failed";
+			}
+		}else{
+			$data = array(
+				'pilihan_kriteria' => $this->input->post("pilihanKriteriaJarakPasar"),
+				'bobot' => $this->input->post("bobotKriteriaJarakPasar")
+			);
+
+			if ($this->model->update('kriteria_jarakpasar', $data,$id)) {
+				echo "success";
+			}else{
+				echo "failed";
+			}
+		}
+	}
+
+	public function getKriteriaJarakPasarById($id)
+	{
+		$data = $this->model->getDataById("kriteria_jarakpasar", $id);
+		foreach ($data->result_array() as $dt) {
+			$res = array(
+				'id_kriteria' => $dt['id_kriteria'],
+				'pilihan_kriteria'=>$dt['pilihan_kriteria'],
+				'bobot'=> $dt['bobot'] 
+			);
+		}
+
+		echo json_encode($res);
+	}
+
+	public function deleteKriteriaJarakPasar($id)
+	{
+		if ($this->model->delete('kriteria_jarakpasar', $id)) {
 			echo "success";
 		}
 	}
