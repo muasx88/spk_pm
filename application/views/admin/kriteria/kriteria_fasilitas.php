@@ -10,7 +10,6 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th width="5%">No.</th>
 							<th>Pilihan Kriteria</th>
 							<th width="10%">Bobot</th>
 							<th width="20%">Aksi</th>
@@ -18,10 +17,8 @@
 					</thead>
 					<tbody>
 						<?php 
-						$num = 1;
 						foreach ($kriteria_fasilitas as $kf) { ?>
 							<tr>
-								<td width="5%" align="center"><?=$num++ ?>.</td>
 								<td><?=$kf->pilihan_kriteria ?></td>
 								<td width="10%" align="center"><?=$kf->bobot ?></td>
 								<td width="20%" align="center">
@@ -96,6 +93,7 @@
 
 
 <script>
+	var tbl_kriteria_fasilitas="kriteria_fasilitas";
 	// open modal add
 	$("#addKriteriaFasilitas").click(function(e) {
 		reset_data_kf();
@@ -107,11 +105,13 @@
 	$(".editKriteriaFasilitas").click(function(e) {
 		reset_data_kf();
 		var id = $(this).data("id");
-		$.get('<?php echo base_url('admin/kriteria/getKriteriaFasilitasById/') ?>'+id, function(data) {
+		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaById/') ?>'+id,{
+			tbl:tbl_kriteria_fasilitas
+		},function(data) {
 			$("#idKriteriaFasilitas").val(data.id_kriteria)
 			$("#pilihanKriteriaFasilitas").val(data.pilihan_kriteria)
 			$("#bobotKriteriaFasilitas").val(data.bobot)
-		},'json');
+		});
 		$("#titleKriteriaFasilitas span").text("Edit");
 		$("#modalKriteriaFasilitas").modal("show");
 	});
@@ -127,13 +127,14 @@
 			alert("Isi semua data!");
 		}else{
 			var data = {
-				"idKriteriaFasilitas": $("#idKriteriaFasilitas").val(),
-				"pilihanKriteriaFasilitas" : pilihanKriteriaFasilitas,
-				"bobotKriteriaFasilitas" : bobotKriteriaFasilitas,
+				"idKriteria": $("#idKriteriaFasilitas").val(),
+				"pilihanKriteria" : pilihanKriteriaFasilitas,
+				"bobotKriteria" : bobotKriteriaFasilitas,
+				"tbl":tbl_kriteria_fasilitas
 			}
 
 			$.ajax({
-				url: '<?php echo base_url('admin/kriteria/saveKriteriaFasilitas') ?>',
+				url: '<?php echo base_url('admin/kriteria/saveKriteria') ?>',
 				type: 'POST',
 				data: data,
 				success: function(res) {
@@ -158,8 +159,9 @@
 	// confirm delete button
 	$("#confirmDeleteKriteriaFasilitas").click(function(e) {
 		$.ajax({
-			url: '<?php echo base_url('admin/kriteria/deleteKriteriaFasilitas/') ?>'+idKriteriaFasilitas,
-			type: 'POST',
+			url: '<?php echo base_url('admin/kriteria/deleteKriteria/') ?>'+idKriteriaFasilitas,
+			type: 'GET',
+			data:"tbl="+tbl_kriteria_fasilitas,
 			success: function(res) {
 				if (res == "success") {
 					window.location.reload();

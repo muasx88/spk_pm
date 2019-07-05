@@ -41,36 +41,22 @@ class Kriteria extends CI_Controller {
 		echo json_encode($toJSON);
 	}
 
-
-
-	/*
-	====================================================
-	Fungi CRUD Kriteria Harga
-	====================================================
-
-	*/
-
-	public function saveKriteriaHarga()
+	public function saveKriteria()
 	{
-		$id = $this->input->post("idKriteriaHarga");
+		$id = $this->input->post("idKriteria");
+		$tbl = $this->input->post("tbl");
+		$data = array(
+			'pilihan_kriteria' => $this->input->post("pilihanKriteria"),
+			'bobot' => $this->input->post("bobotKriteria")
+		);
 		if (empty($id)) {
-			$data = array(
-				'pilihan_kriteria' => $this->input->post("pilihanKriteriaHarga"),
-				'bobot' => $this->input->post("bobotKriteriaHarga")
-			);
-
-			if ($this->model->insert('kriteria_harga', $data)) {
+			if ($this->model->insert($tbl, $data)) {
 				echo "success";
 			}else{
 				echo "failed";
 			}
 		}else{
-			$data = array(
-				'pilihan_kriteria' => $this->input->post("pilihanKriteriaHarga"),
-				'bobot' => $this->input->post("bobotKriteriaHarga")
-			);
-
-			if ($this->model->update('kriteria_harga', $data,$id)) {
+			if ($this->model->update($tbl, $data,$id)) {
 				echo "success";
 			}else{
 				echo "failed";
@@ -78,251 +64,18 @@ class Kriteria extends CI_Controller {
 		}
 	}
 
-	public function getKriteriaHargaById($id)
+	public function getKriteriaById($id)
 	{
-		$data = $this->model->getDataById("kriteria_harga", $id);
-		foreach ($data->result_array() as $dt) {
-			$res = array(
-				'id_kriteria' => $dt['id_kriteria'],
-				'pilihan_kriteria'=>$dt['pilihan_kriteria'],
-				'bobot'=> $dt['bobot'] 
-			);
-		}
-
-		echo json_encode($res);
+		$tbl = $this->input->get("tbl");
+		$data = $this->model->getDataById($tbl,$id)->row();
+		
+		echo json_encode($data);
 	}
 
-	public function deleteKriteriaHarga($id)
+	public function deleteKriteria($id)
 	{
-		if ($this->model->delete('kriteria_harga', $id)) {
-			echo "success";
-		}
-	}
-
-
-	/*
-	====================================================
-	Fungi CRUD Kriteria Jarak Ke Kota
-	====================================================
-
-	*/
-
-	public function saveKriteriaJarakKota()
-	{
-		$id = $this->input->post("idKriteriaJarakKota");
-		if (empty($id)) {
-			$data = array(
-				'pilihan_kriteria' => $this->input->post("pilihanKriteriaJarakKota"),
-				'bobot' => $this->input->post("bobotKriteriaJarakKota")
-			);
-
-			if ($this->model->insert('kriteria_jarakkota', $data)) {
-				echo "success";
-			}else{
-				echo "failed";
-			}
-		}else{
-			$data = array(
-				'pilihan_kriteria' => $this->input->post("pilihanKriteriaJarakKota"),
-				'bobot' => $this->input->post("bobotKriteriaJarakKota")
-			);
-
-			if ($this->model->update('kriteria_jarakkota', $data,$id)) {
-				echo "success";
-			}else{
-				echo "failed";
-			}
-		}
-	}
-
-	public function getKriteriaJarakKotaById($id)
-	{
-		$data = $this->model->getDataById("kriteria_jarakkota", $id);
-		foreach ($data->result_array() as $dt) {
-			$res = array(
-				'id_kriteria' => $dt['id_kriteria'],
-				'pilihan_kriteria'=>$dt['pilihan_kriteria'],
-				'bobot'=> $dt['bobot'] 
-			);
-		}
-
-		echo json_encode($res);
-	}
-
-	public function deleteKriteriaJarakKota($id)
-	{
-		if ($this->model->delete('kriteria_jarakkota', $id)) {
-			echo "success";
-		}
-	}
-
-
-	/*
-	====================================================
-	Fungi CRUD Kriteria Jarak Ke Pasar
-	====================================================
-
-	*/
-
-	public function saveKriteriaJarakPasar()
-	{
-		$id = $this->input->post("idKriteriaJarakPasar");
-		if (empty($id)) {
-			$data = array(
-				'pilihan_kriteria' => $this->input->post("pilihanKriteriaJarakPasar"),
-				'bobot' => $this->input->post("bobotKriteriaJarakPasar")
-			);
-
-			if ($this->model->insert('kriteria_jarakpasar', $data)) {
-				echo "success";
-			}else{
-				echo "failed";
-			}
-		}else{
-			$data = array(
-				'pilihan_kriteria' => $this->input->post("pilihanKriteriaJarakPasar"),
-				'bobot' => $this->input->post("bobotKriteriaJarakPasar")
-			);
-
-			if ($this->model->update('kriteria_jarakpasar', $data,$id)) {
-				echo "success";
-			}else{
-				echo "failed";
-			}
-		}
-	}
-
-	public function getKriteriaJarakPasarById($id)
-	{
-		$data = $this->model->getDataById("kriteria_jarakpasar", $id);
-		foreach ($data->result_array() as $dt) {
-			$res = array(
-				'id_kriteria' => $dt['id_kriteria'],
-				'pilihan_kriteria'=>$dt['pilihan_kriteria'],
-				'bobot'=> $dt['bobot'] 
-			);
-		}
-
-		echo json_encode($res);
-	}
-
-	public function deleteKriteriaJarakPasar($id)
-	{
-		if ($this->model->delete('kriteria_jarakpasar', $id)) {
-			echo "success";
-		}
-	}
-
-
-	/*
-	====================================================
-	Fungi CRUD Kriteria Keamanan
-	====================================================
-
-	*/
-
-	public function saveKriteriaKeamanan()
-	{
-		$id = $this->input->post("idKriteriaKeamanan");
-		if (empty($id)) {
-			$data = array(
-				'pilihan_kriteria' => $this->input->post("pilihanKriteriaKeamanan"),
-				'bobot' => $this->input->post("bobotKriteriaKeamanan")
-			);
-
-			if ($this->model->insert('kriteria_keamanan', $data)) {
-				echo "success";
-			}else{
-				echo "failed";
-			}
-		}else{
-			$data = array(
-				'pilihan_kriteria' => $this->input->post("pilihanKriteriaKeamanan"),
-				'bobot' => $this->input->post("bobotKriteriaKeamanan")
-			);
-
-			if ($this->model->update('kriteria_keamanan', $data,$id)) {
-				echo "success";
-			}else{
-				echo "failed";
-			}
-		}
-	}
-
-	public function getKriteriaKeamananById($id)
-	{
-		$data = $this->model->getDataById("kriteria_keamanan", $id);
-		foreach ($data->result_array() as $dt) {
-			$res = array(
-				'id_kriteria' => $dt['id_kriteria'],
-				'pilihan_kriteria'=>$dt['pilihan_kriteria'],
-				'bobot'=> $dt['bobot'] 
-			);
-		}
-
-		echo json_encode($res);
-	}
-
-	public function deleteKriteriaKeamanan($id)
-	{
-		if ($this->model->delete('kriteria_keamanan', $id)) {
-			echo "success";
-		}
-	}
-
-
-	/*
-	====================================================
-	Fungi CRUD Kriteria Fasilitas
-	====================================================
-
-	*/
-
-	public function saveKriteriaFasilitas()
-	{
-		$id = $this->input->post("idKriteriaFasilitas");
-		if (empty($id)) {
-			$data = array(
-				'pilihan_kriteria' => $this->input->post("pilihanKriteriaFasilitas"),
-				'bobot' => $this->input->post("bobotKriteriaFasilitas")
-			);
-
-			if ($this->model->insert('kriteria_fasilitas', $data)) {
-				echo "success";
-			}else{
-				echo "failed";
-			}
-		}else{
-			$data = array(
-				'pilihan_kriteria' => $this->input->post("pilihanKriteriaFasilitas"),
-				'bobot' => $this->input->post("bobotKriteriaFasilitas")
-			);
-
-			if ($this->model->update('kriteria_fasilitas', $data,$id)) {
-				echo "success";
-			}else{
-				echo "failed";
-			}
-		}
-	}
-
-	public function getKriteriaFasilitasById($id)
-	{
-		$data = $this->model->getDataById("kriteria_fasilitas", $id);
-		foreach ($data->result_array() as $dt) {
-			$res = array(
-				'id_kriteria' => $dt['id_kriteria'],
-				'pilihan_kriteria'=>$dt['pilihan_kriteria'],
-				'bobot'=> $dt['bobot'] 
-			);
-		}
-
-		echo json_encode($res);
-	}
-
-	public function deleteKriteriaFasilitas($id)
-	{
-		if ($this->model->delete('kriteria_fasilitas', $id)) {
+		$tbl = $this->input->get("tbl");
+		if ($this->model->delete($tbl, $id)) {
 			echo "success";
 		}
 	}

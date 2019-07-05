@@ -10,7 +10,6 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th width="5%">No.</th>
 							<th>Pilihan Kriteria</th>
 							<th width="10%">Bobot</th>
 							<th width="20%">Aksi</th>
@@ -18,10 +17,8 @@
 					</thead>
 					<tbody>
 						<?php 
-						$num = 1;
 						foreach ($kriteria_jarakkota as $kjk) { ?>
 							<tr>
-								<td width="5%" align="center"><?=$num++ ?>.</td>
 								<td><?=$kjk->pilihan_kriteria ?></td>
 								<td width="10%" align="center"><?=$kjk->bobot ?></td>
 								<td width="20%" align="center">
@@ -96,6 +93,7 @@
 
 
 <script>
+	var tbl_kriteria_jarak_kota="kriteria_jarakkota";
 	// open modal add
 	$("#addKriteriaJarakKota").click(function(e) {
 		reset_data_kjk();
@@ -107,11 +105,13 @@
 	$(".editKriteriaJarakKota").click(function(e) {
 		reset_data_kjk();
 		var id = $(this).data("id");
-		$.get('<?php echo base_url('admin/kriteria/getKriteriaJarakKotaById/') ?>'+id, function(data) {
+		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaById/') ?>'+id,{
+			tbl:tbl_kriteria_jarak_kota
+		},function(data) {
 			$("#idKriteriaJarakKota").val(data.id_kriteria)
 			$("#pilihanKriteriaJarakKota").val(data.pilihan_kriteria)
 			$("#bobotKriteriaJarakKota").val(data.bobot)
-		},'json');
+		});
 		$("#titleKriteriaJarakKota span").text("Edit");
 		$("#modalKriteriaJarakKota").modal("show");
 	});
@@ -127,13 +127,14 @@
 			alert("Isi semua data!");
 		}else{
 			var data = {
-				"idKriteriaJarakKota": $("#idKriteriaJarakKota").val(),
-				"pilihanKriteriaJarakKota" : pilihanKriteriaJarakKota,
-				"bobotKriteriaJarakKota" : bobotKriteriaJarakKota,
+				"idKriteria": $("#idKriteriaJarakKota").val(),
+				"pilihanKriteria" : pilihanKriteriaJarakKota,
+				"bobotKriteria" : bobotKriteriaJarakKota,
+				"tbl":tbl_kriteria_jarak_kota
 			}
 
 			$.ajax({
-				url: '<?php echo base_url('admin/kriteria/saveKriteriaJarakKota') ?>',
+				url: '<?php echo base_url('admin/kriteria/saveKriteria') ?>',
 				type: 'POST',
 				data: data,
 				success: function(res) {
@@ -158,8 +159,9 @@
 	// confirm delete button
 	$("#confirmDeleteKriteriaJarakKota").click(function(e) {
 		$.ajax({
-			url: '<?php echo base_url('admin/kriteria/deleteKriteriaJarakKota/') ?>'+idKriteriaJarakKota,
-			type: 'POST',
+			url: '<?php echo base_url('admin/kriteria/deleteKriteria/') ?>'+idKriteriaJarakKota,
+			type: 'GET',
+			data:"tbl="+tbl_kriteria_jarak_kota,
 			success: function(res) {
 				if (res == "success") {
 					window.location.reload();
