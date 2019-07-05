@@ -22,54 +22,58 @@ class Perumahan extends CI_Controller {
 		$this->template->load('admin/template','admin/perumahan/index', $data);
 	}
 
-	public function tambah()
-	{
+	/*
+	====================================================
+	Fungi CRUD Perumahan
+	====================================================
 
-		$this->form_validation->set_rules('nama_perumahan', 'Nama Perumahan', 'trim|required',
-			array('required' => '%s haru diisi!'));
-		if ($this->form_validation->run() == FALSE) {
-			$data['title']= 'Perumahan';
-			$this->template->load('admin/template','admin/perumahan/tambah', $data);
-		} else {
+	*/
+
+	public function savePerumahan()
+	{
+		$id = $this->input->post("idPerumahan");
+		if (empty($id)) {
 			$data = array(
-				'nama_perumahan' => $this->input->post('nama_perumahan'),
-				'alamat_perumahan' => $this->input->post('alamat'),
+				'nama_perumahan' => $this->input->post("namaPerumahan"),
+				'alamat_perumahan' => $this->input->post("alamatPerumahan")
 			);
 
 			if ($this->model->insert('perumahan', $data)) {
-				redirect('admin/perumahan');
+				echo "success";
+			}else{
+				echo "failed";
 			}
-
-		}
-	}
-
-	public function edit($id)
-	{
-
-		$this->form_validation->set_rules('nama_perumahan', 'Nama Perumahan', 'trim|required',
-			array('required' => '%s haru diisi!'));
-		if ($this->form_validation->run() == FALSE) {
-			$data['title']= 'Perumahan';
-			$data['old'] = $this->model->getById($id, 'perumahan')->row();
-			$this->template->load('admin/template','admin/perumahan/edit', $data);
-		} else {
-			// var_dump($id);die();
+		}else{
 			$data = array(
-				'nama_perumahan' => $this->input->post('nama_perumahan'),
-				'alamat_perumahan' => $this->input->post('alamat'),
+				'nama_perumahan' => $this->input->post("namaPerumahan"),
+				'alamat_perumahan' => $this->input->post("alamatPerumahan")
 			);
 
-			if ($this->model->update('perumahan', $data, $id)) {
-				redirect('admin/perumahan');
+			if ($this->model->update('perumahan', $data,$id)) {
+				echo "success";
+			}else{
+				echo "failed";
 			}
-
 		}
 	}
 
-	public function delete($id)
+	public function getPerumahanById($id)
+	{
+		$data = $this->model->getById($id,"perumahan");
+		foreach ($data->result_array() as $dt) {
+			$res = array(
+				'id_perumahan' => $dt['id_perumahan'],
+				'nama_perumahan'=>$dt['nama_perumahan'],
+				'alamat_perumahan'=> $dt['alamat_perumahan'] 
+			);
+		}
+		echo json_encode($res);
+	}
+
+	public function deletePerumahan($id)
 	{
 		if ($this->model->delete('perumahan', $id)) {
-			redirect('admin/perumahan');
+			echo "success";
 		}
 	}
 
