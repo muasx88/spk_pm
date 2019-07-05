@@ -98,7 +98,7 @@
 <script>
 	// open modal add
 	$("#addPerumahan").click(function(e) {
-		reset_data_perumahan();
+		reset_data();
 		$("#titlePerumahan span").text("Tambah");
 		$("#modalPerumahan").modal("show");
 	});
@@ -129,7 +129,7 @@
 				}
 			});
 			
-			reset_data_perumahan();
+			reset_data();
 			$("#modalPerumahan").modal("hide");
 		}
 
@@ -137,7 +137,7 @@
 
 	// open modal edit
 	$(".editPerumahan").click(function(e) {
-		reset_data_perumahan();
+		reset_data();
 		var id = $(this).data("id");
 		$.get('<?php echo base_url('admin/perumahan/getPerumahanById/') ?>'+id, function(data) {
 			$("#idPerumahan").val(data.id_perumahan)
@@ -167,7 +167,7 @@
 		
 	});
 
-	function reset_data_perumahan(){
+	function reset_data(){
 		$("#idPerumahan").val("");
 		$("#namaPerumahan").val("");
 		$("#alamatPerumahan").val("");

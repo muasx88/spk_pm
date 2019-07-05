@@ -98,14 +98,14 @@
 <script>
 	// open modal add
 	$("#addKriteriaFasilitas").click(function(e) {
-		reset_data();
+		reset_data_kf();
 		$("#titleKriteriaFasilitas span").text("Tambah");
 		$("#modalKriteriaFasilitas").modal("show");
 	});
 
 	// open modal edit
 	$(".editKriteriaFasilitas").click(function(e) {
-		reset_data();
+		reset_data_kf();
 		var id = $(this).data("id");
 		$.get('<?php echo base_url('admin/kriteria/getKriteriaFasilitasById/') ?>'+id, function(data) {
 			$("#idKriteriaFasilitas").val(data.id_kriteria)
@@ -143,7 +143,7 @@
 				}
 			});
 			
-			reset_data();
+			reset_data_kf();
 			$("#modalKriteriaFasilitas").modal("hide");
 		}
 
@@ -169,7 +169,7 @@
 		
 	});
 
-	function reset_data(){
+	function reset_data_kf(){
 		$("#idKriteriaFasilitas").val("");
 		$("#pilihanKriteriaFasilitas").val("");
 		$("#bobotKriteriaFasilitas").val("");

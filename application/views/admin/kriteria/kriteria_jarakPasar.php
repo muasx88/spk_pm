@@ -98,14 +98,14 @@
 <script>
 	// open modal add
 	$("#addKriteriaJarakPasar").click(function(e) {
-		reset_data();
+		reset_data_kjp();
 		$("#titleKriteriaJarakPasar span").text("Tambah");
 		$("#modalKriteriaJarakPasar").modal("show");
 	});
 
 	// open modal edit
 	$(".editKriteriaJarakPasar").click(function(e) {
-		reset_data();
+		reset_data_kjp();
 		var id = $(this).data("id");
 		$.get('<?php echo base_url('admin/kriteria/getKriteriaJarakPasarById/') ?>'+id, function(data) {
 			$("#idKriteriaJarakPasar").val(data.id_kriteria)
@@ -143,7 +143,7 @@
 				}
 			});
 			
-			reset_data();
+			reset_data_kjp();
 			$("#modalKriteriaJarakPasar").modal("hide");
 		}
 
@@ -169,7 +169,7 @@
 		
 	});
 
-	function reset_data(){
+	function reset_data_kjp(){
 		$("#idKriteriaJarakPasar").val("");
 		$("#pilihanKriteriaJarakPasar").val("");
 		$("#bobotKriteriaJarakPasar").val("");

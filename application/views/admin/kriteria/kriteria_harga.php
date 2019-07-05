@@ -98,14 +98,14 @@
 <script>
 	// open modal add
 	$("#addKriteriaHarga").click(function(e) {
-		reset_data();
+		reset_data_kh();
 		$("#titleKriteriaHarga span").text("Tambah");
 		$("#modalKriteriaHarga").modal("show");
 	});
 
 	// open modal edit
 	$(".editKriteriaHarga").click(function(e) {
-		reset_data();
+		reset_data_kh();
 		var id = $(this).data("id");
 		$.get('<?php echo base_url('admin/kriteria/getKriteriaHargaById/') ?>'+id, function(data) {
 			$("#idKriteriaHarga").val(data.id_kriteria)
@@ -143,7 +143,7 @@
 				}
 			});
 			
-			reset_data();
+			reset_data_kh();
 			$("#modalKriteriaHarga").modal("hide");
 		}
 
@@ -169,7 +169,7 @@
 		
 	});
 
-	function reset_data(){
+	function reset_data_kh(){
 		$("#idKriteriaHarga").val("");
 		$("#pilihanKriteriaHarga").val("");
 		$("#bobotKriteriaHarga").val("");

@@ -98,14 +98,14 @@
 <script>
 	// open modal add
 	$("#addKriteriaJarakKota").click(function(e) {
-		reset_data();
+		reset_data_kjk();
 		$("#titleKriteriaJarakKota span").text("Tambah");
 		$("#modalKriteriaJarakKota").modal("show");
 	});
 
 	// open modal edit
 	$(".editKriteriaJarakKota").click(function(e) {
-		reset_data();
+		reset_data_kjk();
 		var id = $(this).data("id");
 		$.get('<?php echo base_url('admin/kriteria/getKriteriaJarakKotaById/') ?>'+id, function(data) {
 			$("#idKriteriaJarakKota").val(data.id_kriteria)
@@ -143,7 +143,7 @@
 				}
 			});
 			
-			reset_data();
+			reset_data_kjk();
 			$("#modalKriteriaJarakKota").modal("hide");
 		}
 
@@ -169,7 +169,7 @@
 		
 	});
 
-	function reset_data(){
+	function reset_data_kjk(){
 		$("#idKriteriaJarakKota").val("");
 		$("#pilihanKriteriaJarakKota").val("");
 		$("#bobotKriteriaJarakKota").val("");

@@ -11,6 +11,7 @@ class Perumahan extends CI_Controller {
 		}
 
 		$this->load->model('M_perumahan', 'model');
+		$this->load->model('M_kriteria', 'mk');
 	}
 
 	public function index()
@@ -28,6 +29,21 @@ class Perumahan extends CI_Controller {
 	====================================================
 
 	*/
+
+	public function getPerumahanJSON()
+	{
+		$datas = $this->model->getAll("perumahan")->result_array();
+
+		$toJSON = array();
+		$toJSON["data"] = array();
+		foreach ($datas as $d) {
+			$data['id_perumahan'] = $d["id_perumahan"];
+			$data['nama_perumahan'] = $d["nama_perumahan"];
+			array_push($toJSON["data"], $data);
+		}
+
+		echo json_encode($toJSON);
+	}
 
 	public function savePerumahan()
 	{

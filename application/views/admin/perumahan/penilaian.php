@@ -62,61 +62,45 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<input type="hidden" id="idPenilaian">
-					<select class="form-control" name="idPerumahan" id="idPerumahan">
-						<option value="1">Perumahan 1</option>
-						<option value="2">Perumahan 2</option>
-						<option value="3">Perumahan 3</option>
-					</select>
+					<div class="form-group">
+						<input type="hidden" id="idPenilaian">
+						<select class="form-control" name="idPerumahans" id="idPerumahans">
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="c1">Kriteria Harga (C1)</label>
+						<select class="form-control" name="c1" id="c1">
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="c2">Kriteria Jarak Ke Pusat Kota (C2)</label>
+						<select class="form-control" name="c2" id="c2">
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="c3">Kriteria Jarak Ke Pasar (C3)</label>
+						<select class="form-control" name="c3" id="c3">
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="c4">Kriteria Keamanan (C4)</label>
+						<select class="form-control" name="c4" id="c4">
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="c5">Kriteria Fasilitas (C5)</label>
+						<select class="form-control" name="c5" id="c5">
+						</select>
+					</div>
 				</div>
-				<div class="form-group">
-					<label for="c1">Kriteria Harga (C1)</label>
-					<select class="form-control" name="c1" id="c1">
-						<option value="1">C1</option>
-						<option value="2">C1</option>
-						<option value="3">C1</option>
-					</select>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+					<button type="submit" class="btn btn-primary">Simpan</button>
 				</div>
-				<div class="form-group">
-					<label for="c2">Kriteria Jarak Ke Pusat Kota (C2)</label>
-					<select class="form-control" name="c2" id="c2">
-						<option value="1">C2</option>
-						<option value="2">C2</option>
-						<option value="3">C2</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="c3">Kriteria Jarak Ke Pasar (C3)</label>
-					<select class="form-control" name="c3" id="c3">
-						<option value="1">C3</option>
-						<option value="2">C3</option>
-						<option value="3">C3</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="c4">Kriteria Keamanan (C4)</label>
-					<select class="form-control" name="c4" id="c4">
-						<option value="1">C4</option>
-						<option value="2">C4</option>
-						<option value="3">C4</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="c5">Kriteria Fasilitas (C5)</label>
-					<select class="form-control" name="c5" id="c5">
-						<option value="1">C5</option>
-						<option value="2">C5</option>
-						<option value="3">C5</option>
-					</select>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-				<button type="submit" class="btn btn-primary">Simpan</button>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
-</div>
 </div>
 
 
@@ -142,22 +126,82 @@
 </div>
 
 <script>
+
+	// get data json
+	function getDataJson() {
+		// get data perumahan and append to select
+		$.getJSON('<?php echo base_url('admin/perumahan/getPerumahanJSON') ?>', function(data) {
+			$.each(data.data, function(i, obj){
+				$('#idPerumahans').append($('<option>').text(obj.nama_perumahan).attr('value', obj.id_perumahan));
+			});
+		});
+
+
+		// get data KRITERIA HARGA and append to select
+		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaJSON') ?>',{
+			db:"kriteria_harga"
+		},function(data) {
+			$.each(data.data, function(i, obj){
+				// console.log("kh",obj)
+				$('#c1').append($('<option>').text(obj.pilihan_kriteria).attr('value', obj.id_kriteria));
+			});
+		});
+
+		// get data KRITERIA JARAK KE PUSAT KOTA and append to select
+		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaJSON') ?>',{
+			db:"kriteria_jarakkota"
+		},function(data) {
+			$.each(data.data, function(i, obj){
+				$('#c2').append($('<option>').text(obj.pilihan_kriteria).attr('value', obj.id_kriteria));
+			});
+		});
+
+		// get data KRITERIA JARAK KE PASAR and append to select
+		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaJSON') ?>',{
+			db:"kriteria_jarakpasar"
+		},function(data) {
+			$.each(data.data, function(i, obj){
+				$('#c3').append($('<option>').text(obj.pilihan_kriteria).attr('value', obj.id_kriteria));
+			});
+		});
+
+		// get data KRITERIA KEAMANAN and append to select
+		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaJSON') ?>',{
+			db:"kriteria_keamanan"
+		},function(data) {
+			$.each(data.data, function(i, obj){
+				$('#c4').append($('<option>').text(obj.pilihan_kriteria).attr('value', obj.id_kriteria));
+			});
+		});
+
+		// get data KRITERIA FASILITAS and append to select
+		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaJSON') ?>',{
+			db:"kriteria_fasilitas"
+		},function(data) {
+			$.each(data.data, function(i, obj){
+				$('#c5').append($('<option>').text(obj.pilihan_kriteria).attr('value', obj.id_kriteria));
+			});
+		});
+	}
+
 	// open modal add
 	$("#addPenilaian").click(function(e) {
-		// reset_data();
+		reset_data_penilaian();
+		getDataJson();
+
 		$("#titlePenilaian span").text("Tambah");
 		$("#modalPenilaian").modal("show");
 	});
 
 	// save button 
 	$("#formPenilaian").submit(function(e) {
-		var idPerumahan = $("#idPerumahan").val();
-		if (idPerumahan == '') {
+		var idPerumahans = $("#idPerumahans").val();
+		if (idPerumahans == '') {
 			alert("Isi semua data!");
 		}else{
 			var data = {
 				"idPenilaian": $("#idPenilaian").val(),
-				"idPerumahan": $("#idPerumahan").val(),
+				"idPerumahans": $("#idPerumahans").val(),
 				"c1" : $("#c1").val(),
 				"c2" : $("#c2").val(),
 				"c3" : $("#c3").val(),
@@ -176,7 +220,7 @@
 				}
 			});
 			
-			reset_data();
+			reset_data_penilaian();
 			$("#modalPenilaian").modal("hide");
 		}
 
@@ -184,7 +228,7 @@
 
 	// open modal edit
 	$(".editPenilaian").click(function(e) {
-		reset_data();
+		reset_data_penilaian();
 		var id = $(this).data("id");
 		$.get('<?php echo base_url('admin/perumahan/getPerumahanById/') ?>'+id, function(data) {
 			$("#idPerumahan").val(data.nama_perumahan)
@@ -213,7 +257,7 @@
 		
 	});
 
-	function reset_data(){
+	function reset_data_penilaian(){
 		$("#idPenilaian").val("");
 		// $("#alamatPerumahan").val("");
 	}

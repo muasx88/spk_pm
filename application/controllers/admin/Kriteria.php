@@ -26,6 +26,23 @@ class Kriteria extends CI_Controller {
 		$this->template->load('admin/template','admin/kriteria/kriteria', $data);
 	}
 
+	public function getKriteriaJSON()
+	{
+		$db =$this->input->get("db");
+		$datas = $this->model->getData($db)->result_array();
+		$toJSON = array();
+		$toJSON["data"] = array();
+		foreach ($datas as $d) {
+			$data['id_kriteria'] = $d["id_kriteria"];
+			$data['pilihan_kriteria'] = $d["pilihan_kriteria"];
+			array_push($toJSON["data"], $data);
+		}
+
+		echo json_encode($toJSON);
+	}
+
+
+
 	/*
 	====================================================
 	Fungi CRUD Kriteria Harga

@@ -98,14 +98,14 @@
 <script>
 	// open modal add
 	$("#addKriteriaKeamanan").click(function(e) {
-		reset_data();
+		reset_data_ka();
 		$("#titleKriteriaKeamanan span").text("Tambah");
 		$("#modalKriteriaKeamanan").modal("show");
 	});
 
 	// open modal edit
 	$(".editKriteriaKeamanan").click(function(e) {
-		reset_data();
+		reset_data_ka();
 		var id = $(this).data("id");
 		$.get('<?php echo base_url('admin/kriteria/getKriteriaKeamananById/') ?>'+id, function(data) {
 			$("#idKriteriaKeamanan").val(data.id_kriteria)
@@ -143,7 +143,7 @@
 				}
 			});
 			
-			reset_data();
+			reset_data_ka();
 			$("#modalKriteriaKeamanan").modal("hide");
 		}
 
@@ -169,7 +169,7 @@
 		
 	});
 
-	function reset_data(){
+	function reset_data_ka(){
 		$("#idKriteriaKeamanan").val("");
 		$("#pilihanKriteriaKeamanan").val("");
 		$("#bobotKriteriaKeamanan").val("");
