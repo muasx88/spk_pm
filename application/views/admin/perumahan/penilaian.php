@@ -65,32 +65,38 @@
 					<div class="form-group">
 						<input type="hidden" id="idPenilaian">
 						<select class="form-control" name="idPerumahans" id="idPerumahans">
+							<option value="">Pilih</option>
 						</select>
 					</div>
 
 					<div class="form-group">
 						<label for="c1">Kriteria Harga (C1)</label>
 						<select class="form-control" name="c1" id="c1">
+							<option value="">Pilih</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="c2">Kriteria Jarak Ke Pusat Kota (C2)</label>
 						<select class="form-control" name="c2" id="c2">
+							<option value="">Pilih</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="c3">Kriteria Jarak Ke Pasar (C3)</label>
 						<select class="form-control" name="c3" id="c3">
+							<option value="">Pilih</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="c4">Kriteria Keamanan (C4)</label>
 						<select class="form-control" name="c4" id="c4">
+							<option value="">Pilih</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="c5">Kriteria Fasilitas (C5)</label>
 						<select class="form-control" name="c5" id="c5">
+							<option value="">Pilih</option>
 						</select>
 					</div>
 				</div>
@@ -259,6 +265,12 @@
 
 	function reset_data_penilaian(){
 		$("#idPenilaian").val("");
+		$("#idPerumahans").val("");
+		$("#c1").val("");
+		$("#c2").val("");
+		$("#c3").val("");
+		$("#c4").val("");
+		$("#c5").val("");
 		// $("#alamatPerumahan").val("");
 	}
 
