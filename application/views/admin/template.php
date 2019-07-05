@@ -1,57 +1,57 @@
 <?php $this->load->view('admin/partials/header'); ?>
 <body id="page-top">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+	<!-- Page Wrapper -->
+	<div id="wrapper">
 
-    <!-- Sidebar -->
-    <?php $this->load->view('admin/partials/sidebar'); ?>
-    <!-- End of Sidebar -->
+		<!-- Sidebar -->
+		<?php $this->load->view('admin/partials/sidebar'); ?>
+		<!-- End of Sidebar -->
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
 
-      <!-- Main Content -->
-      <div id="content">
+			<!-- Main Content -->
+			<div id="content">
 
-        <!-- Topbar -->
-        <?php $this->load->view('admin/partials/navbar'); ?>
-        <!-- End of Topbar -->
+				<!-- Topbar -->
+				<?php $this->load->view('admin/partials/navbar'); ?>
+				<!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
 
-          <!-- Page Heading -->
-          <!-- <h1 class="h3 mb-4 text-gray-800">Blank Page</h1> -->
+					<!-- Page Heading -->
+					<!-- <h1 class="h3 mb-4 text-gray-800">Blank Page</h1> -->
 
-          <?= $contents; ?>
+					<?= $contents; ?>
 
-        </div>
-        <!-- /.container-fluid -->
+				</div>
+				<!-- /.container-fluid -->
 
-      </div>
-      <!-- End of Main Content -->
+			</div>
+			<!-- End of Main Content -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
+			<!-- Footer -->
+			<footer class="sticky-footer bg-white">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright &copy; SPK-PM <?= date("Y") ?>. Theme by: SB-Admin2</span>
+					</div>
+				</div>
+			</footer>
+			<!-- End of Footer -->
 
-    </div>
-    <!-- End of Content Wrapper -->
+		</div>
+		<!-- End of Content Wrapper -->
 
-  </div>
-  <!-- End of Page Wrapper -->
+	</div>
+	<!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top">
+		<i class="fas fa-angle-up"></i>
+	</a>
 
-  
-<?php $this->load->view('admin/partials/footer'); ?>
+
+	<?php $this->load->view('admin/partials/footer'); ?>

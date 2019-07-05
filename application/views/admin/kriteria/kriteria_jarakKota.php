@@ -13,7 +13,7 @@
 							<th width="5%">No.</th>
 							<th>Pilihan Kriteria</th>
 							<th width="10%">Bobot</th>
-							<th width="10%">Aksi</th>
+							<th width="20%">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -23,8 +23,8 @@
 							<tr>
 								<td width="5%" align="center"><?=$num++ ?>.</td>
 								<td><?=$kjk->pilihan_kriteria ?></td>
-								<td width="10%"><?=$kjk->bobot ?></td>
-								<td width="10%" align="center">
+								<td width="10%" align="center"><?=$kjk->bobot ?></td>
+								<td width="20%" align="center">
 									<button title="edit" data-id="<?= $kjk->id_kriteria ?>" class="btn btn-info btn-sm btn-circle editKriteriaJarakKota"><i class="fa fa-edit"></i></button>
 									<button data-id="<?= $kjk->id_kriteria ?>" title="hapus" class="btn btn-danger btn-sm btn-circle deleteKriteriaJarakKota"><i class="fa fa-trash"></i></button>
 								</td>

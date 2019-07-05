@@ -10,22 +10,22 @@ class Auth extends CI_Controller {
 	public function login()
 	{
 		$config = array(
-	        array(
-                'field' => 'username',
-                'label' => 'Username',
-                'rules' => 'trim|required',
-                'errors' => array(
-                    'required' => '%s harus diisi.',
-                ),
-	        ),
-	        array(
-                'field' => 'password',
-                'label' => 'Password',
-                'rules' => 'trim|required',
-                'errors' => array(
-                    'required' => '%s harus diisi.',
-                ),
-	        )
+			array(
+				'field' => 'username',
+				'label' => 'Username',
+				'rules' => 'trim|required',
+				'errors' => array(
+					'required' => '%s harus diisi.',
+				),
+			),
+			array(
+				'field' => 'password',
+				'label' => 'Password',
+				'rules' => 'trim|required',
+				'errors' => array(
+					'required' => '%s harus diisi.',
+				),
+			)
 		);
 		$this->form_validation->set_rules($config);
 		if ($this->form_validation->run() == FALSE) {

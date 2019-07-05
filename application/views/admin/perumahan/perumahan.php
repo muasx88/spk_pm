@@ -1,8 +1,7 @@
-<div class="card shadow">
+<div class="card shadow mb-3">
 	<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 		<h6 class="m-0 font-weight-bold text-primary">Data Perumahan</h6>
 		<button class="btn btn-primary btn-sm" id="addPerumahan"><i class="fa fa-plus"></i> Tambah</button>
-		<!-- <a href="<?= base_url('admin/perumahan/tambah') ?>" class="btn btn-primary btn-sm" id="tambah"><i class="fa fa-plus"></i> Tambah</a> -->
 	</div>
 	<div class="card-body">
 		<?php 
@@ -99,7 +98,7 @@
 <script>
 	// open modal add
 	$("#addPerumahan").click(function(e) {
-		// reset_data();
+		reset_data();
 		$("#titlePerumahan span").text("Tambah");
 		$("#modalPerumahan").modal("show");
 	});
