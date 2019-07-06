@@ -1,3 +1,5 @@
+<!-- Perumahan + Penilaian -->
+
 <div class="card shadow mb-3">
 	<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 		<h6 class="m-0 font-weight-bold text-primary">Data Perumahan + Penilaian</h6>
@@ -5,35 +7,33 @@
 	</div>
 	<div class="card-body">
 		<?php 
-		if (count($data_perumahan) > 0) { ?>
+		if (count($data_kecocokan) > 0) { ?>
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th width="7%">No.</th>
 							<th>Alternatif</th>
-							<th class="text-center">C1</th>
-							<th class="text-center">C2</th>
-							<th class="text-center">C3</th>
-							<th class="text-center">C4</th>
-							<th class="text-center">C5</th>
+							<th>Harga</th>
+							<th>Jarak ke Kota</th>
+							<th>Jarak ke Pasar</th>
+							<th>Keamanan</th>
+							<th>Fasilitas</th>
 							<th class="text-center" width="10%">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php $no=1; foreach ($data_perumahan as $p) { ?>
+						<?php foreach ($data_kecocokan as $dk) { ?>
 							<tr>
-								<td width="7%"><?= $no++ ?>.</td>
-								<td>Alternatif A</td>
-								<td align="center">1</td>
-								<td align="center">2</td>
-								<td align="center">3</td>
-								<td align="center">5</td>
-								<td align="center">5</td>
+								<td><?= $dk->nama_perumahan ?></td>
+								<td><?= $dk->c1_kriteria ?></td>
+								<td><?= $dk->c2_kriteria ?></td>
+								<td><?= $dk->c3_kriteria ?></td>
+								<td><?= $dk->c4_kriteria ?></td>
+								<td><?= $dk->c5_kriteria ?></td>
 								<td width="10%" align="center">
-									<button title="edit" data-id="<?= $p->id_perumahan ?>" class="btn btn-info btn-sm btn-circle editPenilaian"><i class="fa fa-edit"></i>
+									<button title="edit" data-id="<?= $dk->id_penilaian ?>" class="btn btn-info btn-sm btn-circle editPenilaian"><i class="fa fa-edit"></i>
 									</button>
-									<button data-id="<?= $p->id_perumahan ?>" title="hapus" class="btn btn-danger btn-sm btn-circle deletePerumahan"><i class="fa fa-trash"></i>
+									<button data-id="<?= $dk->id_penilaian ?>" title="hapus" class="btn btn-danger btn-sm btn-circle deletePerumahan"><i class="fa fa-trash"></i>
 									</button>
 								</td>
 							</tr>
@@ -46,9 +46,9 @@
 			<p>Data tidak ada</p>
 		<?php }
 		?>
-
 	</div>
 </div>
+
 
 <!-- modal form -->
 <div class="modal fade" id="modalPenilaian" tabindex="-1" role="dialog" aria-hidden="true">
@@ -64,39 +64,33 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<input type="hidden" id="idPenilaian">
-						<select class="form-control" name="idPerumahans" id="idPerumahans">
-							<option value="">Pilih</option>
+						<select class="form-control" name="idPerumahan" id="idPerumahan">
 						</select>
 					</div>
 
 					<div class="form-group">
 						<label for="c1">Kriteria Harga (C1)</label>
 						<select class="form-control" name="c1" id="c1">
-							<option value="">Pilih</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="c2">Kriteria Jarak Ke Pusat Kota (C2)</label>
 						<select class="form-control" name="c2" id="c2">
-							<option value="">Pilih</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="c3">Kriteria Jarak Ke Pasar (C3)</label>
 						<select class="form-control" name="c3" id="c3">
-							<option value="">Pilih</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="c4">Kriteria Keamanan (C4)</label>
 						<select class="form-control" name="c4" id="c4">
-							<option value="">Pilih</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="c5">Kriteria Fasilitas (C5)</label>
 						<select class="form-control" name="c5" id="c5">
-							<option value="">Pilih</option>
 						</select>
 					</div>
 				</div>
@@ -137,8 +131,9 @@
 	function getDataJson() {
 		// get data perumahan and append to select
 		$.getJSON('<?php echo base_url('admin/perumahan/getPerumahanJSON') ?>', function(data) {
+			$('#idPerumahan').append($('<option>').text("Pilih").attr('value', ""));
 			$.each(data.data, function(i, obj){
-				$('#idPerumahans').append($('<option>').text(obj.nama_perumahan).attr('value', obj.id_perumahan));
+				$('#idPerumahan').append($('<option>').text(obj.nama_perumahan).attr('value', obj.id_perumahan));
 			});
 		});
 
@@ -147,8 +142,8 @@
 		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaJSON') ?>',{
 			db:"kriteria_harga"
 		},function(data) {
+			$('#c1').append($('<option>').text("Pilih").attr('value', ""));
 			$.each(data.data, function(i, obj){
-				// console.log("kh",obj)
 				$('#c1').append($('<option>').text(obj.pilihan_kriteria).attr('value', obj.id_kriteria));
 			});
 		});
@@ -157,6 +152,7 @@
 		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaJSON') ?>',{
 			db:"kriteria_jarakkota"
 		},function(data) {
+			$('#c2').append($('<option>').text("Pilih").attr('value', ""));
 			$.each(data.data, function(i, obj){
 				$('#c2').append($('<option>').text(obj.pilihan_kriteria).attr('value', obj.id_kriteria));
 			});
@@ -166,6 +162,7 @@
 		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaJSON') ?>',{
 			db:"kriteria_jarakpasar"
 		},function(data) {
+			$('#c3').append($('<option>').text("Pilih").attr('value', ""));
 			$.each(data.data, function(i, obj){
 				$('#c3').append($('<option>').text(obj.pilihan_kriteria).attr('value', obj.id_kriteria));
 			});
@@ -175,6 +172,7 @@
 		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaJSON') ?>',{
 			db:"kriteria_keamanan"
 		},function(data) {
+			$('#c4').append($('<option>').text("Pilih").attr('value', ""));
 			$.each(data.data, function(i, obj){
 				$('#c4').append($('<option>').text(obj.pilihan_kriteria).attr('value', obj.id_kriteria));
 			});
@@ -184,6 +182,7 @@
 		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaJSON') ?>',{
 			db:"kriteria_fasilitas"
 		},function(data) {
+			$('#c5').append($('<option>').text("Pilih").attr('value', ""));
 			$.each(data.data, function(i, obj){
 				$('#c5').append($('<option>').text(obj.pilihan_kriteria).attr('value', obj.id_kriteria));
 			});
@@ -193,36 +192,44 @@
 	// open modal add
 	$("#addPenilaian").click(function(e) {
 		reset_data_penilaian();
+		$('select option').remove();
 		getDataJson();
-
 		$("#titlePenilaian span").text("Tambah");
 		$("#modalPenilaian").modal("show");
 	});
 
 	// save button 
 	$("#formPenilaian").submit(function(e) {
-		var idPerumahans = $("#idPerumahans").val();
-		if (idPerumahans == '') {
+		e.preventDefault();
+		var idPerumahan = $("#idPerumahan").val();
+		var c1 = $("#c1").val();
+		var c2 = $("#c2").val();
+		var c3 = $("#c3").val();
+		var c4 = $("#c4").val();
+		var c5 = $("#c5").val();
+		if (idPerumahan =="" && c1 =="" && c2 =="" && c3 =="" && c4 == "" && c5 =="") {
 			alert("Isi semua data!");
 		}else{
 			var data = {
 				"idPenilaian": $("#idPenilaian").val(),
-				"idPerumahans": $("#idPerumahans").val(),
-				"c1" : $("#c1").val(),
-				"c2" : $("#c2").val(),
-				"c3" : $("#c3").val(),
-				"c4" : $("#c4").val(),
-				"c5" : $("#c5").val()
+				"idPerumahan": idPerumahan,
+				"C1" : c1,
+				"C2" : c2,
+				"C3" : c3,
+				"C4" : c4,
+				"C5" : c5,
 			}
 
+			// console.log(data)
 			$.ajax({
-				url: '<?php echo base_url('admin/perumahan/savePenilaian') ?>',
+				url: '<?php echo base_url('admin/penilaian/savePenilaian') ?>',
 				type: 'POST',
 				data: data,
 				success: function(res) {
 					if (res == "success") {
 						window.location.reload();
 					}
+					// console.log(res)
 				}
 			});
 			
@@ -265,7 +272,7 @@
 
 	function reset_data_penilaian(){
 		$("#idPenilaian").val("");
-		$("#idPerumahans").val("");
+		$("#idPerumahan").val("");
 		$("#c1").val("");
 		$("#c2").val("");
 		$("#c3").val("");
@@ -273,5 +280,7 @@
 		$("#c5").val("");
 		// $("#alamatPerumahan").val("");
 	}
+
+
 
 </script>

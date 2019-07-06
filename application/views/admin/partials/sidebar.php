@@ -27,7 +27,6 @@
 		</a>
 	</li>
 
-	<!-- Alternatif -->
 	<li class="nav-item <?php echo $this->uri->segment(2) == 'perumahan' ? 'active' : ''; ?>">
 		<a class="nav-link" href="<?= base_url('admin/perumahan') ?>">
 			<i class="fas fa-fw fa-table"></i>
@@ -35,7 +34,12 @@
 		</a>
 	</li>
 
-
+	<li class="nav-item <?php echo $this->uri->segment(2) == 'penilaian' ? 'active' : ''; ?>">
+		<a class="nav-link" href="<?= base_url('admin/penilaian') ?>">
+			<i class="fas fa-fw fa-chart-area"></i>
+			<span>Penilaian</span>
+		</a>
+	</li>
 
 	<!-- Divider -->
 	<hr class="sidebar-divider d-none d-md-block">

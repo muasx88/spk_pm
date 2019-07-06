@@ -11,7 +11,6 @@ class Perumahan extends CI_Controller {
 		}
 
 		$this->load->model('M_perumahan', 'model');
-		$this->load->model('M_kriteria', 'mk');
 	}
 
 	public function index()
@@ -22,13 +21,6 @@ class Perumahan extends CI_Controller {
 		);
 		$this->template->load('admin/template','admin/perumahan/index', $data);
 	}
-
-	/*
-	====================================================
-	Fungi CRUD Perumahan
-	====================================================
-
-	*/
 
 	public function getPerumahanJSON()
 	{
