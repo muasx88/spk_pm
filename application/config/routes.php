@@ -2,6 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'pages/home';
 $route['about'] = 'pages/about';
+
+// admin
 $route['admin'] = 'admin/dashboard';
 
 

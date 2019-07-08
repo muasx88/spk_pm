@@ -9,11 +9,19 @@ class Penilaian extends CI_Controller {
 			redirect('admin/auth/login');
 		}
 		$this->load->model('M_penilaian', 'model');
+		$this->load->model('M_kriteria', 'mk');
+		$this->load->model('M_perumahan', 'mp');
 	}
 	public function index()
 	{
 		$data = array(
-			'title' => "Perumahan", 
+			'title' => "Penilaian",
+			'perumahan' => $this->mp->getAll('perumahan')->result(),
+			'kriteria_harga' => $this->mk->getData('kriteria_harga')->result(),
+			'kriteria_jarakkota' => $this->mk->getData('kriteria_jarakkota')->result(),
+			'kriteria_jarakpasar' => $this->mk->getData('kriteria_jarakpasar')->result(),
+			'kriteria_keamanan' => $this->mk->getData('kriteria_keamanan')->result(),
+			'kriteria_fasilitas' => $this->mk->getData('kriteria_fasilitas')->result(),
 			'data_kecocokan' => $this->model->getDataKecocokan()->result(), 
 		);
 		$this->template->load('admin/template','admin/penilaian/index', $data);
@@ -38,6 +46,23 @@ class Penilaian extends CI_Controller {
 			if ($this->model->insert($data)) {
 				echo "success";
 			}
+		}else{
+			if ($this->model->update($data, $id)) {
+				echo "success";
+			}
+		}
+	}
+
+	public function getPenilaianByID($id)
+	{
+		$data = $this->model->getDataById($id)->row();
+		echo json_encode($data);
+	}
+
+	public function deletePenilaian($id)
+	{
+		if ($this->model->delete($id)) {
+			echo "success";
 		}
 	}
 

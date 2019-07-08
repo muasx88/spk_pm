@@ -65,32 +65,56 @@
 					<div class="form-group">
 						<input type="hidden" id="idPenilaian">
 						<select class="form-control" name="idPerumahan" id="idPerumahan">
+							<option value="">Pilih</option>
+							<?php foreach ($perumahan as $p) { ?>
+								<option value="<?= $p->id_perumahan ?>"><?= $p->nama_perumahan ?></option>
+							<?php } ?>
 						</select>
 					</div>
 
 					<div class="form-group">
 						<label for="c1">Kriteria Harga (C1)</label>
 						<select class="form-control" name="c1" id="c1">
+							<option value="">Pilih</option>
+							<?php foreach ($kriteria_harga as $kh) { ?>
+								<option value="<?= $kh->id_kriteria ?>"><?= $kh->pilihan_kriteria ?></option>
+							<?php } ?>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="c2">Kriteria Jarak Ke Pusat Kota (C2)</label>
 						<select class="form-control" name="c2" id="c2">
+							<option value="">Pilih</option>
+							<?php foreach ($kriteria_jarakkota as $kjk) { ?>
+								<option value="<?= $kjk->id_kriteria ?>"><?= $kjk->pilihan_kriteria ?></option>
+							<?php } ?>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="c3">Kriteria Jarak Ke Pasar (C3)</label>
 						<select class="form-control" name="c3" id="c3">
+							<option value="">Pilih</option>
+							<?php foreach ($kriteria_jarakpasar as $kjp) { ?>
+								<option value="<?= $kjp->id_kriteria ?>"><?= $kjp->pilihan_kriteria ?></option>
+							<?php } ?>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="c4">Kriteria Keamanan (C4)</label>
 						<select class="form-control" name="c4" id="c4">
+							<option value="">Pilih</option>
+							<?php foreach ($kriteria_keamanan as $ka) { ?>
+								<option value="<?= $ka->id_kriteria ?>"><?= $ka->pilihan_kriteria ?></option>
+							<?php } ?>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="c5">Kriteria Fasilitas (C5)</label>
 						<select class="form-control" name="c5" id="c5">
+							<option value="">Pilih</option>
+							<?php foreach ($kriteria_fasilitas as $kf) { ?>
+								<option value="<?= $kf->id_kriteria ?>"><?= $kf->pilihan_kriteria ?></option>
+							<?php } ?>
 						</select>
 					</div>
 				</div>
@@ -127,73 +151,9 @@
 
 <script>
 
-	// get data json
-	function getDataJson() {
-		// get data perumahan and append to select
-		$.getJSON('<?php echo base_url('admin/perumahan/getPerumahanJSON') ?>', function(data) {
-			$('#idPerumahan').append($('<option>').text("Pilih").attr('value', ""));
-			$.each(data.data, function(i, obj){
-				$('#idPerumahan').append($('<option>').text(obj.nama_perumahan).attr('value', obj.id_perumahan));
-			});
-		});
-
-
-		// get data KRITERIA HARGA and append to select
-		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaJSON') ?>',{
-			db:"kriteria_harga"
-		},function(data) {
-			$('#c1').append($('<option>').text("Pilih").attr('value', ""));
-			$.each(data.data, function(i, obj){
-				$('#c1').append($('<option>').text(obj.pilihan_kriteria).attr('value', obj.id_kriteria));
-			});
-		});
-
-		// get data KRITERIA JARAK KE PUSAT KOTA and append to select
-		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaJSON') ?>',{
-			db:"kriteria_jarakkota"
-		},function(data) {
-			$('#c2').append($('<option>').text("Pilih").attr('value', ""));
-			$.each(data.data, function(i, obj){
-				$('#c2').append($('<option>').text(obj.pilihan_kriteria).attr('value', obj.id_kriteria));
-			});
-		});
-
-		// get data KRITERIA JARAK KE PASAR and append to select
-		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaJSON') ?>',{
-			db:"kriteria_jarakpasar"
-		},function(data) {
-			$('#c3').append($('<option>').text("Pilih").attr('value', ""));
-			$.each(data.data, function(i, obj){
-				$('#c3').append($('<option>').text(obj.pilihan_kriteria).attr('value', obj.id_kriteria));
-			});
-		});
-
-		// get data KRITERIA KEAMANAN and append to select
-		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaJSON') ?>',{
-			db:"kriteria_keamanan"
-		},function(data) {
-			$('#c4').append($('<option>').text("Pilih").attr('value', ""));
-			$.each(data.data, function(i, obj){
-				$('#c4').append($('<option>').text(obj.pilihan_kriteria).attr('value', obj.id_kriteria));
-			});
-		});
-
-		// get data KRITERIA FASILITAS and append to select
-		$.getJSON('<?php echo base_url('admin/kriteria/getKriteriaJSON') ?>',{
-			db:"kriteria_fasilitas"
-		},function(data) {
-			$('#c5').append($('<option>').text("Pilih").attr('value', ""));
-			$.each(data.data, function(i, obj){
-				$('#c5').append($('<option>').text(obj.pilihan_kriteria).attr('value', obj.id_kriteria));
-			});
-		});
-	}
-
 	// open modal add
 	$("#addPenilaian").click(function(e) {
 		reset_data_penilaian();
-		$('select option').remove();
-		getDataJson();
 		$("#titlePenilaian span").text("Tambah");
 		$("#modalPenilaian").modal("show");
 	});
@@ -241,26 +201,32 @@
 
 	// open modal edit
 	$(".editPenilaian").click(function(e) {
+		var id = $(this).data('id');
 		reset_data_penilaian();
-		var id = $(this).data("id");
-		$.get('<?php echo base_url('admin/perumahan/getPerumahanById/') ?>'+id, function(data) {
-			$("#idPerumahan").val(data.nama_perumahan)
-			$("#alamatPerumahan").val(data.alamat_perumahan)
-		},'json');
-		$("#titlePerumahan span").text("Edit");
-		$("#modalPerumahan").modal("show");
+		$.getJSON('<?php echo base_url('admin/penilaian/getPenilaianByID/') ?>'+id,function(data) {
+			$("#formPenilaian #idPenilaian").val(data.id_penilaian);
+			$("#formPenilaian #idPerumahan").val(data.id_perumahan).change();
+			$("#formPenilaian #c1").val(data.C1).change();
+			$("#formPenilaian #c2").val(data.C2).change();
+			$("#formPenilaian #c3").val(data.C3).change();
+			$("#formPenilaian #c4").val(data.C4).change();
+			$("#formPenilaian #c5").val(data.C5).change();
+		});
+
+		$("#titlePenilaian span").text("Edit");
+		$("#modalPenilaian").modal("show");
 	});
 
 	// delete modal show
-	var idPerumahan="";
+	var idPenilaian="";
 	$(".deletePerumahan").click(function(e) {
-		idPerumahan = $(this).data("id");
+		idPenilaian = $(this).data("id");
 		$("#modalDeletePenilaian").modal("show");
 	});
 	// confirm delete button
 	$("#confirmDeletePenilaian").click(function(e) {
 		$.ajax({
-			url: '<?php echo base_url('admin/perumahan/deletePerumahan/') ?>'+idPerumahan,
+			url: '<?php echo base_url('admin/penilaian/deletePenilaian/') ?>'+idPenilaian,
 			success: function(res) {
 				if (res == "success") {
 					window.location.reload();

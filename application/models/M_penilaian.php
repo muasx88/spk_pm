@@ -30,6 +30,21 @@ class M_penilaian extends CI_Model {
 		return $this->db->insert($this->table, $data);
 	}
 
+	public function update($data, $id)
+	{
+		return $this->db->where('id_penilaian', $id)->update($this->table, $data);
+	}
+
+	public function getDataById($id)
+	{
+		return $this->db->get_where($this->table, array('id_penilaian' => $id ));
+	}
+
+	public function delete($id)
+	{
+		return $this->db->where('id_penilaian', $id)->delete($this->table);
+	}
+
 }
 
 /* End of file M_Penilaian.php */

@@ -1,6 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
 	<div class="container">
-		<a class="navbar-brand" href="<?php echo base_url() ?>"><strong>SPK PM</strong></a>
+		<a class="navbar-brand" href="<?php echo base_url() ?>">
+			<img height="30" width="30" src="<?php echo base_url() ?>assets/img/home.png" alt="logo">
+			<strong class="ml-1">
+				SPK PM
+			</strong>
+		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>

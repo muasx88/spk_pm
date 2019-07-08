@@ -5,6 +5,11 @@
 	<title>SPK-PM</title>
 	<link rel="shortcut icon" href="<?php echo base_url() ?>assets/img/home.png" />
 	<link rel="stylesheet" href="<?php echo base_url('assets/vendor/bootswatch/bootstrap.min.css') ?>">
+	<style>
+		.navbar{
+			height: 75px;
+		}
+	</style>
 </head>
 <body>
 
