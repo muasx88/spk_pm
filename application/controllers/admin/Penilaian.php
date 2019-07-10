@@ -23,7 +23,7 @@ class Penilaian extends CI_Controller {
 			'kriteria_keamanan' => $this->mk->getData('kriteria_keamanan')->result(),
 			'kriteria_fasilitas' => $this->mk->getData('kriteria_fasilitas')->result(),
 			'data_kecocokan' => $this->model->getDataKecocokan()->result(),
-			'matrik_normalisasi' => $this->model->matrikNormalisasi()
+			'matrik_normalisasi' => $this->_matrikNormalisasi()
 		);
 		$this->template->load('admin/template','admin/penilaian/index', $data);
 
@@ -67,20 +67,32 @@ class Penilaian extends CI_Controller {
 		}
 	}
 
-	// public function matrikNormalisasi()
-	// {
-	// 	$c1_MIN = $this->model->getMinORMax('MIN','c1');
-	// 	$c2_MAX = $this->model->getMinORMax('MAX','c2');
-	// 	$c3_MAX = $this->model->getMinORMax('MAX','c3');
-	// 	$c4_MAX = $this->model->getMinORMax('MAX','c4');
-	// 	$c5_MAX = $this->model->getMinORMax('MAX','c5');
+	private function _matrikNormalisasi()
+	{
+		$c1_MIN = $this->model->getMinORMax('kriteria_harga','MIN','C1')->row()->C1;
+		$c2_MAX = $this->model->getMinORMax('kriteria_jarakkota','MAX','C2')->row()->C2;
+		$c3_MAX = $this->model->getMinORMax('kriteria_jarakpasar','MAX','C3')->row()->C3;
+		$c4_MAX = $this->model->getMinORMax('kriteria_keamanan','MAX','C4')->row()->C4;
+		$c5_MAX = $this->model->getMinORMax('kriteria_fasilitas','MAX','C5')->row()->C5;
 
-	// 	$matrikNormalisasi = $this->model->matrikNormalisasi();
-	// 	echo json_encode($matrikNormalisasi);
 
-	// 	return $this->model->getDataKecocokan()->result();
-	
-	// }
+		$hasil = [];
+		$datas = $this->model->matrikNormalisasi()->result_array();
+
+		foreach ($datas as $data) {
+			$d['id_penilaian'] = $data['id_penilaian'];
+			$d['nama_perumahan'] = $data['nama_perumahan'];
+			$d['C1'] = $c1_MIN / $data['c1_bobot'];
+			$d['C2'] = $data['c2_bobot'] / $c2_MAX;
+			$d['C3'] = $data['c3_bobot'] / $c3_MAX ;
+			$d['C4'] = $data['c4_bobot'] / $c4_MAX;
+			$d['C5'] = $data['c5_bobot'] / $c5_MAX;
+			array_push($hasil, $d);
+		}
+
+		return $hasil;
+
+	}
 
 }
 

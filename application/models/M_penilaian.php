@@ -71,22 +71,8 @@ class M_penilaian extends CI_Model {
 		$this->db->join('kriteria_jarakpasar c3', 'c3.id_kriteria = penilaian.C3');
 		$this->db->join('kriteria_keamanan c4', 'c4.id_kriteria = penilaian.C4');
 		$this->db->join('kriteria_fasilitas c5', 'c5.id_kriteria = penilaian.C5');
-		$datas = $this->db->get()->result_array();
+		return $this->db->get();
 
-		$hasil = [];
-
-		foreach ($datas as $data) {
-			$d['id_penilaian'] = $data['id_penilaian'];
-			$d['nama_perumahan'] = $data['nama_perumahan'];
-			$d['C1'] = $this->getMinORMax('kriteria_harga','MIN','C1')->row()->C1 / $data['c1_bobot'];
-			$d['C2'] = $data['c2_bobot'] / $this->getMinORMax('kriteria_jarakkota','MAX','C2')->row()->C2;
-			$d['C3'] = $data['c3_bobot'] / $this->getMinORMax('kriteria_jarakpasar','MAX','C3')->row()->C3 ;
-			$d['C4'] = $data['c4_bobot'] / $this->getMinORMax('kriteria_keamanan','MAX','C4')->row()->C4;
-			$d['C5'] = $data['c5_bobot'] / $this->getMinORMax('kriteria_fasilitas','MAX','C5')->row()->C5;
-			array_push($hasil, $d);
-		}
-
-		return $hasil;
 	}
 
 }
