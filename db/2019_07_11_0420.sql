@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 06 Jul 2019 pada 03.38
+-- Generation Time: 11 Jul 2019 pada 04.18
 -- Versi Server: 5.7.26-0ubuntu0.16.04.1
--- PHP Version: 7.3.6-1+ubuntu16.04.1+deb.sury.org+1
+-- PHP Version: 7.3.7-1+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -81,11 +81,11 @@ CREATE TABLE `kriteria_harga` (
 --
 
 INSERT INTO `kriteria_harga` (`id_kriteria`, `pilihan_kriteria`, `bobot`) VALUES
-(2, 'Sangat Penting', 5),
-(3, 'Penting', 4),
-(4, 'Cukup Penting', 3),
-(5, 'Sedang', 2),
-(6, 'Sangat Tidak Penting', 1);
+(2, 'Sangat Murah', 5),
+(3, 'Murah', 4),
+(4, 'Sedang', 3),
+(5, 'Mahal', 2),
+(6, 'Sangat Mahal', 1);
 
 -- --------------------------------------------------------
 
@@ -104,11 +104,11 @@ CREATE TABLE `kriteria_jarakkota` (
 --
 
 INSERT INTO `kriteria_jarakkota` (`id_kriteria`, `pilihan_kriteria`, `bobot`) VALUES
-(2, 'Sangat Penting', 5),
-(3, 'Penting', 4),
-(4, 'Cukup Penting', 3),
-(5, 'Sedang', 2),
-(6, 'Sangat Tidak Penting', 1);
+(2, 'Sangat Dekat', 5),
+(3, 'Dekat', 4),
+(4, 'Sedang', 3),
+(5, 'Jauh', 2),
+(6, 'Sangat Jauh', 1);
 
 -- --------------------------------------------------------
 
@@ -172,6 +172,36 @@ CREATE TABLE `penilaian` (
   `C5` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data untuk tabel `penilaian`
+--
+
+INSERT INTO `penilaian` (`id_penilaian`, `id_perumahan`, `C1`, `C2`, `C3`, `C4`, `C5`) VALUES
+(2, 7, 2, 3, 1, 4, 1),
+(3, 8, 3, 2, 2, 3, 1),
+(6, 9, 2, 2, 1, 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `perangkingan`
+--
+
+CREATE TABLE `perangkingan` (
+  `id` int(11) NOT NULL,
+  `nama_perumahan` varchar(50) NOT NULL,
+  `nilai` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `perangkingan`
+--
+
+INSERT INTO `perangkingan` (`id`, `nama_perumahan`, `nilai`) VALUES
+(65, 'Perumahan A', 18.4),
+(66, 'Perumahan B', 20.2),
+(67, 'Perumahan C', 21);
+
 -- --------------------------------------------------------
 
 --
@@ -189,7 +219,9 @@ CREATE TABLE `perumahan` (
 --
 
 INSERT INTO `perumahan` (`id_perumahan`, `nama_perumahan`, `alamat_perumahan`) VALUES
-(7, 'Perumahan A', 'Jl. Jalan aja dulu kali aja jodoh');
+(7, 'Perumahan A', 'Jl. Jalan aja dulu kali aja jodoh'),
+(8, 'Perumahan B', 'Jl Sepak Bola'),
+(9, 'Perumahan C', 'Jl jalan ke tepi sawah');
 
 --
 -- Indexes for dumped tables
@@ -246,6 +278,12 @@ ALTER TABLE `penilaian`
   ADD KEY `id_perumahan` (`id_perumahan`);
 
 --
+-- Indexes for table `perangkingan`
+--
+ALTER TABLE `perangkingan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `perumahan`
 --
 ALTER TABLE `perumahan`
@@ -289,12 +327,17 @@ ALTER TABLE `kriteria_keamanan`
 -- AUTO_INCREMENT for table `penilaian`
 --
 ALTER TABLE `penilaian`
-  MODIFY `id_penilaian` int(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_penilaian` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `perangkingan`
+--
+ALTER TABLE `perangkingan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 --
 -- AUTO_INCREMENT for table `perumahan`
 --
 ALTER TABLE `perumahan`
-  MODIFY `id_perumahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_perumahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --

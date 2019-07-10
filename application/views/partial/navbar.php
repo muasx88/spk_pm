@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	<div class="container">
 		<a class="navbar-brand" href="<?php echo base_url() ?>">
 			<img height="30" width="30" src="<?php echo base_url() ?>assets/img/home.png" alt="logo">
@@ -12,10 +12,10 @@
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active">
+				<li class="nav-item <?= $this->uri->uri_string()==''? 'active': ''?>">
 					<a class="nav-link" href="<?php echo base_url() ?>">Home <span class="sr-only">(current)</span></a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item <?= $this->uri->uri_string()=='about' ? 'active': ''?>">
 					<a class="nav-link" href="<?php echo base_url('/about') ?>">About Us</a>
 				</li>
 			</ul>
