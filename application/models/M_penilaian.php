@@ -75,6 +75,11 @@ class M_penilaian extends CI_Model {
 
 	}
 
+	public function getPerangkingan()
+	{
+		return $this->db->select('nama_perumahan, nilai')->from('perangkingan')->order_by('nilai', 'desc')->limit(1)->get();
+	}
+
 }
 
 /* End of file M_Penilaian.php */

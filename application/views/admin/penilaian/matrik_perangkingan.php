@@ -37,6 +37,13 @@ if (count($data_kecocokan) > 0) { ?>
 		</div>
 	</div>
 
+	<div class="card shadow mb-3">
+		<div class="card-body">
+			<h3>Kesimpulan</h3>
+			<p>Dari hasil perhitungan rangking diatas, maka pemilihan Perumahan Muslim terbaik adalah <strong><?= $rangking->nama_perumahan ?></strong> dengan nilai <strong><?= $rangking->nilai ?></strong></p>
+		</div>
+	</div>
+
 
 
 

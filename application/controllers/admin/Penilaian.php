@@ -31,6 +31,7 @@ class Penilaian extends CI_Controller {
 			'data_kecocokan' => $this->model->getDataKecocokan()->result(),
 			'matrik_normalisasi' => $this->_matrikNormalisasi(),
 			'matrik_perangkingan' => $this->_matrikPerangkingan(),
+			'rangking' => $this->_getPerangkingan(),
 		);
 		$this->template->load('admin/template','admin/penilaian/index', $data);
 
@@ -103,6 +104,8 @@ class Penilaian extends CI_Controller {
 
 	private function _matrikPerangkingan()
 	{
+		$this->db->empty_table('perangkingan');
+
 		$hasil=[];
 		$datas = $this->_matrikNormalisasi();
 		foreach ($datas as $data) {
@@ -114,11 +117,22 @@ class Penilaian extends CI_Controller {
 			$d['C4'] = $data['C4'] * $this->W_C4;
 			$d['C5'] = $data['C5'] * $this->W_C5;
 			$d['jumlah'] = $d['C1'] + $d['C2'] + $d['C3'] + $d['C4'] + $d['C5'];
+
+			$this->db->insert('perangkingan', array(
+				'nama_perumahan' => $d['nama_perumahan'],
+				'nilai'=> $d['jumlah'],
+			));
+
 			array_push($hasil, $d);
 		}
 
-		// echo json_encode($hasil);
 		return $hasil;
+	}
+
+	private function _getPerangkingan()
+	{
+		$p1 = $this->model->getPerangkingan()->row();
+		return $p1;
 	}
 
 }
