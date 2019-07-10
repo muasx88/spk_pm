@@ -2,6 +2,12 @@
 
 class Penilaian extends CI_Controller {
 
+	private $W_C1 = 5;
+	private $W_C2 = 3;
+	private $W_C3 = 4;
+	private $W_C4 = 5;
+	private $W_C5 = 5;
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -23,7 +29,8 @@ class Penilaian extends CI_Controller {
 			'kriteria_keamanan' => $this->mk->getData('kriteria_keamanan')->result(),
 			'kriteria_fasilitas' => $this->mk->getData('kriteria_fasilitas')->result(),
 			'data_kecocokan' => $this->model->getDataKecocokan()->result(),
-			'matrik_normalisasi' => $this->_matrikNormalisasi()
+			'matrik_normalisasi' => $this->_matrikNormalisasi(),
+			'matrik_perangkingan' => $this->_matrikPerangkingan(),
 		);
 		$this->template->load('admin/template','admin/penilaian/index', $data);
 
@@ -92,6 +99,26 @@ class Penilaian extends CI_Controller {
 
 		return $hasil;
 
+	}
+
+	private function _matrikPerangkingan()
+	{
+		$hasil=[];
+		$datas = $this->_matrikNormalisasi();
+		foreach ($datas as $data) {
+			$d['id_penilaian'] = $data['id_penilaian'];
+			$d['nama_perumahan'] = $data['nama_perumahan'];
+			$d['C1'] = $data['C1'] * $this->W_C1;
+			$d['C2'] = $data['C2'] * $this->W_C2;
+			$d['C3'] = $data['C3'] * $this->W_C3;
+			$d['C4'] = $data['C4'] * $this->W_C4;
+			$d['C5'] = $data['C5'] * $this->W_C5;
+			$d['jumlah'] = $d['C1'] + $d['C2'] + $d['C3'] + $d['C4'] + $d['C5'];
+			array_push($hasil, $d);
+		}
+
+		// echo json_encode($hasil);
+		return $hasil;
 	}
 
 }
