@@ -22,7 +22,8 @@ class Penilaian extends CI_Controller {
 			'kriteria_jarakpasar' => $this->mk->getData('kriteria_jarakpasar')->result(),
 			'kriteria_keamanan' => $this->mk->getData('kriteria_keamanan')->result(),
 			'kriteria_fasilitas' => $this->mk->getData('kriteria_fasilitas')->result(),
-			'data_kecocokan' => $this->model->getDataKecocokan()->result(), 
+			'data_kecocokan' => $this->model->getDataKecocokan()->result(),
+			'matrik_normalisasi' => $this->model->matrikNormalisasi()
 		);
 		$this->template->load('admin/template','admin/penilaian/index', $data);
 
@@ -65,6 +66,21 @@ class Penilaian extends CI_Controller {
 			echo "success";
 		}
 	}
+
+	// public function matrikNormalisasi()
+	// {
+	// 	$c1_MIN = $this->model->getMinORMax('MIN','c1');
+	// 	$c2_MAX = $this->model->getMinORMax('MAX','c2');
+	// 	$c3_MAX = $this->model->getMinORMax('MAX','c3');
+	// 	$c4_MAX = $this->model->getMinORMax('MAX','c4');
+	// 	$c5_MAX = $this->model->getMinORMax('MAX','c5');
+
+	// 	$matrikNormalisasi = $this->model->matrikNormalisasi();
+	// 	echo json_encode($matrikNormalisasi);
+
+	// 	return $this->model->getDataKecocokan()->result();
+	
+	// }
 
 }
 

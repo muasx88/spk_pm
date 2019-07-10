@@ -4,7 +4,7 @@ class M_perumahan extends CI_Model {
 
 	public function getAll($tbl)
 	{
-		return $this->db->order_by('id_perumahan', "DESC")->get($tbl);
+		return $this->db->order_by('id_perumahan', "ASC")->get($tbl);
 	}
 
 	public function insert($tbl, $data)
