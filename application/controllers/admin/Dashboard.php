@@ -9,11 +9,15 @@ class Dashboard extends CI_Controller {
 		if ($this->session->userdata('logged_in') == FALSE) {
 			redirect('admin/auth/login');
 		}
+		$this->load->model('M_perumahan', 'mp');
 	}
 
 	public function index()
 	{
-		$data['title']= 'Dashboard';
+		$data = array(
+			'title' => 'Dashboard',
+			'jml_perumahan' => $this->mp->getAll('perumahan')->num_rows(), 
+		);
 		$this->template->load('admin/template','admin/dashboard', $data);
 	}
 
