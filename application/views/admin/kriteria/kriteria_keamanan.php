@@ -12,6 +12,7 @@
 						<tr>
 							<th>Pilihan Kriteria</th>
 							<th width="10%">Bobot</th>
+							<th>Keterangan</th>
 							<th width="20%">Aksi</th>
 						</tr>
 					</thead>
@@ -21,6 +22,7 @@
 							<tr>
 								<td><?=$kk->pilihan_kriteria ?></td>
 								<td width="10%" align="center"><?=$kk->bobot ?></td>
+								<td align="center"><?=$kk->keterangan ?></td>
 								<td width="20%" align="center">
 									<button title="edit" data-id="<?= $kk->id_kriteria ?>" class="btn btn-info btn-sm btn-circle editKriteriaKeamanan"><i class="fa fa-edit"></i></button>
 									<button data-id="<?= $kk->id_kriteria ?>" title="hapus" class="btn btn-danger btn-sm btn-circle deleteKriteriaKeamanan"><i class="fa fa-trash"></i></button>
@@ -54,6 +56,10 @@
 					<div class="form-group">
 						<label for="pilihanKriteriaKeamanan">Pilihan Kriteria C4</label>
 						<input type="text" name="pilihanKriteriaKeamanan" id="pilihanKriteriaKeamanan" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="keteranganKriteriaKeamanan">Keterangan</label>
+						<input type="text" name="keteranganKriteriaKeamanan" id="keteranganKriteriaKeamanan" class="form-control">
 					</div>
 					<div class="form-group">
 						<label for="bobotKriteriaKeamanan">Bobot</label>
@@ -110,6 +116,7 @@
 		},function(data) {
 			$("#idKriteriaKeamanan").val(data.id_kriteria)
 			$("#pilihanKriteriaKeamanan").val(data.pilihan_kriteria)
+			$("#keteranganKriteriaKeamanan").val(data.keterangan)
 			$("#bobotKriteriaKeamanan").val(data.bobot)
 		});
 		$("#titleKriteriaKeamanan span").text("Edit");
@@ -122,13 +129,15 @@
 		e.preventDefault();
 		var pilihanKriteriaKeamanan = $("#pilihanKriteriaKeamanan").val();
 		var bobotKriteriaKeamanan = $("#bobotKriteriaKeamanan").val();
+		var keteranganKriteriaKeamanan = $("#keteranganKriteriaKeamanan").val();
 
-		if (pilihanKriteriaKeamanan == '' && bobotKriteriaKeamanan == '') {
+		if (pilihanKriteriaKeamanan == '' && bobotKriteriaKeamanan == '' && keteranganKriteriaKeamanan == '') {
 			alert("Isi semua data!");
 		}else{
 			var data = {
 				"idKriteria": $("#idKriteriaKeamanan").val(),
 				"pilihanKriteria" : pilihanKriteriaKeamanan,
+				"keteranganKriteria" : keteranganKriteriaKeamanan,
 				"bobotKriteria" : bobotKriteriaKeamanan,
 				"tbl":tbl_kriteria_keamanan
 			}

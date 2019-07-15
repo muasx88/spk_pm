@@ -47,6 +47,7 @@ class Kriteria extends CI_Controller {
 		$tbl = $this->input->post("tbl");
 		$data = array(
 			'pilihan_kriteria' => $this->input->post("pilihanKriteria"),
+			'keterangan' => $this->input->post("keteranganKriteria"),
 			'bobot' => $this->input->post("bobotKriteria")
 		);
 		if (empty($id)) {

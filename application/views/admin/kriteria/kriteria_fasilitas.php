@@ -12,6 +12,7 @@
 						<tr>
 							<th>Pilihan Kriteria</th>
 							<th width="10%">Bobot</th>
+							<th>Keterangan</th>
 							<th width="20%">Aksi</th>
 						</tr>
 					</thead>
@@ -21,6 +22,7 @@
 							<tr>
 								<td><?=$kf->pilihan_kriteria ?></td>
 								<td width="10%" align="center"><?=$kf->bobot ?></td>
+								<td align="center"><?=$kf->keterangan ?></td>
 								<td width="20%" align="center">
 									<button title="edit" data-id="<?= $kf->id_kriteria ?>" class="btn btn-info btn-sm btn-circle editKriteriaFasilitas"><i class="fa fa-edit"></i></button>
 									<button data-id="<?= $kf->id_kriteria ?>" title="hapus" class="btn btn-danger btn-sm btn-circle deleteKriteriaFasilitas"><i class="fa fa-trash"></i></button>
@@ -54,6 +56,10 @@
 					<div class="form-group">
 						<label for="pilihanKriteriaFasilitas">Pilihan Kriteria C5</label>
 						<input type="text" name="pilihanKriteriaFasilitas" id="pilihanKriteriaFasilitas" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="keteranganKriteriaFasilitas">Keterangan</label>
+						<input type="text" name="keteranganKriteriaFasilitas" id="keteranganKriteriaFasilitas" class="form-control">
 					</div>
 					<div class="form-group">
 						<label for="bobotKriteriaFasilitas">Bobot</label>
@@ -110,6 +116,7 @@
 		},function(data) {
 			$("#idKriteriaFasilitas").val(data.id_kriteria)
 			$("#pilihanKriteriaFasilitas").val(data.pilihan_kriteria)
+			$("#keteranganKriteriaFasilitas").val(data.keterangan)
 			$("#bobotKriteriaFasilitas").val(data.bobot)
 		});
 		$("#titleKriteriaFasilitas span").text("Edit");
@@ -122,13 +129,15 @@
 		e.preventDefault();
 		var pilihanKriteriaFasilitas = $("#pilihanKriteriaFasilitas").val();
 		var bobotKriteriaFasilitas = $("#bobotKriteriaFasilitas").val();
+		var keteranganKriteriaFasilitas = $("#keteranganKriteriaFasilitas").val();
 
-		if (pilihanKriteriaFasilitas == '' && bobotKriteriaFasilitas == '') {
+		if (pilihanKriteriaFasilitas == '' && bobotKriteriaFasilitas == '' && keteranganKriteriaFasilitas == '') {
 			alert("Isi semua data!");
 		}else{
 			var data = {
 				"idKriteria": $("#idKriteriaFasilitas").val(),
 				"pilihanKriteria" : pilihanKriteriaFasilitas,
+				"keteranganKriteria" : keteranganKriteriaFasilitas,
 				"bobotKriteria" : bobotKriteriaFasilitas,
 				"tbl":tbl_kriteria_fasilitas
 			}

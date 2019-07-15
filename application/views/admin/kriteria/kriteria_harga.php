@@ -12,6 +12,7 @@
 						<tr>
 							<th>Pilihan Kriteria</th>
 							<th width="10%">Bobot</th>
+							<th>Keterangan</th>
 							<th width="20%">Aksi</th>
 						</tr>
 					</thead>
@@ -21,6 +22,7 @@
 							<tr>
 								<td><?=$kh->pilihan_kriteria ?></td>
 								<td width="10%" align="center"><?=$kh->bobot ?></td>
+								<td align="center"><?=$kh->keterangan ?></td>
 								<td width="20%" align="center">
 									<button title="edit" data-id="<?= $kh->id_kriteria ?>" class="btn btn-info btn-sm btn-circle editKriteriaHarga"><i class="fa fa-edit"></i></button>
 									<button data-id="<?= $kh->id_kriteria ?>" title="hapus" class="btn btn-danger btn-sm btn-circle deleteKriteriaHarga"><i class="fa fa-trash"></i></button>
@@ -54,6 +56,10 @@
 					<div class="form-group">
 						<label for="pilihanKriteriaHarga">Pilihan Kriteria C1</label>
 						<input type="text" name="pilihanKriteriaHarga" id="pilihanKriteriaHarga" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="keteranganKriteriaHarga">Keterangan</label>
+						<input type="text" name="keteranganKriteriaHarga" id="keteranganKriteriaHarga" class="form-control">
 					</div>
 					<div class="form-group">
 						<label for="bobotKriteriaHarga">Bobot</label>
@@ -110,6 +116,7 @@
 		},function(data) {
 			$("#idKriteriaHarga").val(data.id_kriteria)
 			$("#pilihanKriteriaHarga").val(data.pilihan_kriteria)
+			$("#keteranganKriteriaHarga").val(data.keterangan)
 			$("#bobotKriteriaHarga").val(data.bobot)
 		});
 		$("#titleKriteriaHarga span").text("Edit");
@@ -121,14 +128,16 @@
 	$("#formKriteriaHarga").submit(function(e) {
 		e.preventDefault();
 		var pilihanKriteriaHarga = $("#pilihanKriteriaHarga").val();
+		var keteranganKriteriaHarga = $("#keteranganKriteriaHarga").val();
 		var bobotKriteriaHarga = $("#bobotKriteriaHarga").val();
 
-		if (pilihanKriteriaHarga == '' && bobotKriteriaHarga == '') {
+		if (pilihanKriteriaHarga == '' && bobotKriteriaHarga == '' && keteranganKriteriaHarga == '') {
 			alert("Isi semua data!");
 		}else{
 			var data = {
 				"idKriteria": $("#idKriteriaHarga").val(),
 				"pilihanKriteria" : pilihanKriteriaHarga,
+				"keteranganKriteria" : keteranganKriteriaHarga,
 				"bobotKriteria" : bobotKriteriaHarga,
 				"tbl": tbl_kriteria_harga
 			}
@@ -174,6 +183,7 @@
 	function reset_data_kh(){
 		$("#idKriteriaHarga").val("");
 		$("#pilihanKriteriaHarga").val("");
+		$("#keteranganKriteriaHarga").val("");
 		$("#bobotKriteriaHarga").val("");
 	}
 

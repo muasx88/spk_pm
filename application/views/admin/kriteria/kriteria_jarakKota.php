@@ -12,6 +12,7 @@
 						<tr>
 							<th>Pilihan Kriteria</th>
 							<th width="10%">Bobot</th>
+							<th>Keterangan</th>
 							<th width="20%">Aksi</th>
 						</tr>
 					</thead>
@@ -21,6 +22,7 @@
 							<tr>
 								<td><?=$kjk->pilihan_kriteria ?></td>
 								<td width="10%" align="center"><?=$kjk->bobot ?></td>
+								<td align="center"><?=$kjk->keterangan ?></td>
 								<td width="20%" align="center">
 									<button title="edit" data-id="<?= $kjk->id_kriteria ?>" class="btn btn-info btn-sm btn-circle editKriteriaJarakKota"><i class="fa fa-edit"></i></button>
 									<button data-id="<?= $kjk->id_kriteria ?>" title="hapus" class="btn btn-danger btn-sm btn-circle deleteKriteriaJarakKota"><i class="fa fa-trash"></i></button>
@@ -54,6 +56,10 @@
 					<div class="form-group">
 						<label for="pilihanKriteriaJarakKota">Pilihan Kriteria C2</label>
 						<input type="text" name="pilihanKriteriaJarakKota" id="pilihanKriteriaJarakKota" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="keteranganKriteriaJarakKota">Keterangan</label>
+						<input type="text" name="keteranganKriteriaJarakKota" id="keteranganKriteriaJarakKota" class="form-control">
 					</div>
 					<div class="form-group">
 						<label for="bobotKriteriaJarakKota">Bobot</label>
@@ -110,6 +116,7 @@
 		},function(data) {
 			$("#idKriteriaJarakKota").val(data.id_kriteria)
 			$("#pilihanKriteriaJarakKota").val(data.pilihan_kriteria)
+			$("#keteranganKriteriaJarakKota").val(data.keterangan)
 			$("#bobotKriteriaJarakKota").val(data.bobot)
 		});
 		$("#titleKriteriaJarakKota span").text("Edit");
@@ -122,13 +129,15 @@
 		e.preventDefault();
 		var pilihanKriteriaJarakKota = $("#pilihanKriteriaJarakKota").val();
 		var bobotKriteriaJarakKota = $("#bobotKriteriaJarakKota").val();
+		var keteranganKriteriaJarakKota = $("#keteranganKriteriaJarakKota").val();
 
-		if (pilihanKriteriaJarakKota == '' && bobotKriteriaJarakKota == '') {
+		if (pilihanKriteriaJarakKota == '' && bobotKriteriaJarakKota == '' && keteranganKriteriaJarakKota == '') {
 			alert("Isi semua data!");
 		}else{
 			var data = {
 				"idKriteria": $("#idKriteriaJarakKota").val(),
 				"pilihanKriteria" : pilihanKriteriaJarakKota,
+				"keteranganKriteria" : keteranganKriteriaJarakKota,
 				"bobotKriteria" : bobotKriteriaJarakKota,
 				"tbl":tbl_kriteria_jarak_kota
 			}

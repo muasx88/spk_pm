@@ -12,6 +12,7 @@
 						<tr>
 							<th>Pilihan Kriteria</th>
 							<th width="10%">Bobot</th>
+							<th>Keterangan</th>
 							<th width="20%">Aksi</th>
 						</tr>
 					</thead>
@@ -21,6 +22,7 @@
 							<tr>
 								<td><?=$kjp->pilihan_kriteria ?></td>
 								<td width="10%" align="center"><?=$kjp->bobot ?></td>
+								<td align="center"><?=$kjp->keterangan ?></td>
 								<td width="20%" align="center">
 									<button title="edit" data-id="<?= $kjp->id_kriteria ?>" class="btn btn-info btn-sm btn-circle editKriteriaJarakPasar"><i class="fa fa-edit"></i></button>
 									<button data-id="<?= $kjp->id_kriteria ?>" title="hapus" class="btn btn-danger btn-sm btn-circle deleteKriteriaJarakPasar"><i class="fa fa-trash"></i></button>
@@ -54,6 +56,10 @@
 					<div class="form-group">
 						<label for="pilihanKriteriaJarakPasar">Pilihan Kriteria C3</label>
 						<input type="text" name="pilihanKriteriaJarakPasar" id="pilihanKriteriaJarakPasar" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="keteranganKriteriaJarakPasar">Keterangan</label>
+						<input type="text" name="keteranganKriteriaJarakPasar" id="keteranganKriteriaJarakPasar" class="form-control">
 					</div>
 					<div class="form-group">
 						<label for="bobotKriteriaJarakPasar">Bobot</label>
@@ -110,6 +116,7 @@
 		},function(data) {
 			$("#idKriteriaJarakPasar").val(data.id_kriteria)
 			$("#pilihanKriteriaJarakPasar").val(data.pilihan_kriteria)
+			$("#keteranganKriteriaJarakPasar").val(data.keterangan)
 			$("#bobotKriteriaJarakPasar").val(data.bobot)
 		});
 		$("#titleKriteriaJarakPasar span").text("Edit");
@@ -122,13 +129,15 @@
 		e.preventDefault();
 		var pilihanKriteriaJarakPasar = $("#pilihanKriteriaJarakPasar").val();
 		var bobotKriteriaJarakPasar = $("#bobotKriteriaJarakPasar").val();
+		var keteranganKriteriaJarakPasar = $("#keteranganKriteriaJarakPasar").val();
 
-		if (pilihanKriteriaJarakPasar == '' && bobotKriteriaJarakPasar == '') {
+		if (pilihanKriteriaJarakPasar == '' && bobotKriteriaJarakPasar == '' && keteranganKriteriaJarakPasar == '') {
 			alert("Isi semua data!");
 		}else{
 			var data = {
 				"idKriteria": $("#idKriteriaJarakPasar").val(),
 				"pilihanKriteria" : pilihanKriteriaJarakPasar,
+				"keteranganKriteria" : keteranganKriteriaJarakPasar,
 				"bobotKriteria" : bobotKriteriaJarakPasar,
 				"tbl":tbl_kriteria_jarak_pasar
 			}
