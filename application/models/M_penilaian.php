@@ -8,11 +8,11 @@ class M_penilaian extends CI_Model {
 		$this->db->select('
 			penilaian.*,
 			p.id_perumahan as p_id,p.nama_perumahan,
-			c1.pilihan_kriteria as c1_kriteria, c1.bobot as c1_bobot,
-			c2.pilihan_kriteria as c2_kriteria, c2.bobot as c2_bobot,
-			c3.pilihan_kriteria as c3_kriteria, c3.bobot as c3_bobot,
-			c4.pilihan_kriteria as c4_kriteria, c4.bobot as c4_bobot,
-			c5.pilihan_kriteria as c5_kriteria, c5.bobot as c5_bobot
+			c1.pilihan_kriteria as c1_kriteria, c1.bobot as c1_bobot, c1.keterangan as c1_keterangan,
+			c2.pilihan_kriteria as c2_kriteria, c2.bobot as c2_bobot, c2.keterangan as c2_keterangan,
+			c3.pilihan_kriteria as c3_kriteria, c3.bobot as c3_bobot, c3.keterangan as c3_keterangan,
+			c4.pilihan_kriteria as c4_kriteria, c4.bobot as c4_bobot, c4.keterangan as c4_keterangan,
+			c5.pilihan_kriteria as c5_kriteria, c5.bobot as c5_bobot, c5.keterangan as c5_keterangan,
 			');
 		$this->db->from('penilaian');
 		$this->db->join('perumahan p', 'p.id_perumahan=penilaian.id_perumahan');

@@ -77,7 +77,7 @@
 						<select class="form-control" name="c1" id="c1">
 							<option value="">Pilih</option>
 							<?php foreach ($kriteria_harga as $kh) { ?>
-								<option value="<?= $kh->id_kriteria ?>"><?= $kh->pilihan_kriteria ?></option>
+								<option value="<?= $kh->id_kriteria ?>"><?= $kh->pilihan_kriteria.' &nbsp;-&nbsp; '.$kh->keterangan ?></option>
 							<?php } ?>
 						</select>
 					</div>
@@ -86,7 +86,7 @@
 						<select class="form-control" name="c2" id="c2">
 							<option value="">Pilih</option>
 							<?php foreach ($kriteria_jarakkota as $kjk) { ?>
-								<option value="<?= $kjk->id_kriteria ?>"><?= $kjk->pilihan_kriteria ?></option>
+								<option value="<?= $kjk->id_kriteria ?>"><?= $kjk->pilihan_kriteria.' &nbsp;-&nbsp; '.$kjk->keterangan ?></option>
 							<?php } ?>
 						</select>
 					</div>
@@ -95,7 +95,7 @@
 						<select class="form-control" name="c3" id="c3">
 							<option value="">Pilih</option>
 							<?php foreach ($kriteria_jarakpasar as $kjp) { ?>
-								<option value="<?= $kjp->id_kriteria ?>"><?= $kjp->pilihan_kriteria ?></option>
+								<option value="<?= $kjp->id_kriteria ?>"><?= $kjp->pilihan_kriteria.' &nbsp;-&nbsp; '.$kjp->keterangan ?></option>
 							<?php } ?>
 						</select>
 					</div>
@@ -104,7 +104,7 @@
 						<select class="form-control" name="c4" id="c4">
 							<option value="">Pilih</option>
 							<?php foreach ($kriteria_keamanan as $ka) { ?>
-								<option value="<?= $ka->id_kriteria ?>"><?= $ka->pilihan_kriteria ?></option>
+								<option value="<?= $ka->id_kriteria ?>"><?= $ka->pilihan_kriteria.' &nbsp;-&nbsp; '.$ka->keterangan ?></option>
 							<?php } ?>
 						</select>
 					</div>
@@ -113,7 +113,7 @@
 						<select class="form-control" name="c5" id="c5">
 							<option value="">Pilih</option>
 							<?php foreach ($kriteria_fasilitas as $kf) { ?>
-								<option value="<?= $kf->id_kriteria ?>"><?= $kf->pilihan_kriteria ?></option>
+								<option value="<?= $kf->id_kriteria ?>"><?= $kf->pilihan_kriteria.' &nbsp;-&nbsp; '.$kf->keterangan ?></option>
 							<?php } ?>
 						</select>
 					</div>
