@@ -1,6 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class M_perumahan extends CI_Model {
+	// front
+	public function getPerumahan($tbl, $name)
+	{
+		$this->db->order_by('nama_perumahan', 'desc');
+		$this->db->like('nama_perumahan', $name);
+		$this->db->from($tbl);
+		return $this->db->get();
+	}
+
+	// back
 
 	public function getAll($tbl)
 	{

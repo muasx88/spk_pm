@@ -15,7 +15,7 @@
 				<li class="nav-item <?= $this->uri->uri_string()==''? 'active': ''?>">
 					<a class="nav-link" href="<?php echo base_url() ?>">Home <span class="sr-only">(current)</span></a>
 				</li>
-				<li class="nav-item <?= $this->uri->uri_string()=='perumahan' ? 'active': ''?>">
+				<li class="nav-item <?= $this->uri->uri_string()=='perumahan' || $this->uri->uri_string()=='perangkingan' ? 'active': ''?>">
 					<a class="nav-link" href="<?php echo base_url('perumahan') ?>">Perumahan</a>
 				</li>
 				<li class="nav-item <?= $this->uri->uri_string()=='about' ? 'active': ''?>">

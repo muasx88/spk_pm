@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'pages/home';
 $route['perumahan'] = 'pages/perumahan';
+$route['perangkingan'] = 'pages/perangkingan';
 $route['about'] = 'pages/about';
 
 // admin
