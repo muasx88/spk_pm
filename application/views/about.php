@@ -4,9 +4,11 @@
 			<h1 class="display-4">About Us</h1>
 			<hr>
 			<p class="font-weight-light" style="font-size: 25px">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis iure voluptas ipsa nemo a commodi molestiae minus quo quod, unde magnam ipsum optio architecto soluta sapiente qui officia odio possimus.
+				Perumahan muslim Yogyakarta merupakan perumahan pada umumnya. Pembeda dengan perumahan umum lainnya yaitu terkhusus untuk umat muslim dan menjauhi riba.
 			</p>
-			<p class="font-weight-light" style="font-size: 25px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis iure voluptas ipsa nemo a commodi molestiae minus quo quod, unde magnam ipsum optio architecto soluta sapiente qui officia odio possimus.</p>
+			<p class="font-weight-light" style="font-size: 25px">
+				Kami berusaha memberikan informasi terkait perumahan muslim yang terbaik dengan menggunakan perhitungan <i>Simple Addictive Weight</i>.
+			</p>
 		</div>
 		<div>
 			<h3 class="font-weight-normal">Hubungi kami untuk melihat info selanjutnya</h3>
