@@ -26,7 +26,7 @@ class Pages extends CI_Controller {
 	public function perangkingan()
 	{
 		$chart_data = '';
-		$datas = $this->mpe->getPerangkingan()->result_array();
+		$datas = $this->mpe->getPerangkingan2()->result_array();
 		foreach ($datas as $data) {
 			$chart_data .= "{ perumahan:'".$data['nama_perumahan']."', nilai:".$data['nilai']."}, ";
 		}
