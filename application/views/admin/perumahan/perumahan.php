@@ -13,7 +13,7 @@
 							<th>No.</th>
 							<th>Nama Perumahan</th>
 							<th>Alamat</th>
-							<th>Aksi</th>
+							<th width="10%">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -22,7 +22,7 @@
 								<td><?= $no++ ?>.</td>
 								<td><?= $p->nama_perumahan ?></td>
 								<td><?= $p->alamat_perumahan ?></td>
-								<td>
+								<td width="10%">
 									<button title="edit" data-id="<?= $p->id_perumahan ?>" class="btn btn-info btn-sm btn-circle editPerumahan"><i class="fa fa-edit"></i>
 									</button>
 									<button data-id="<?= $p->id_perumahan ?>" title="hapus" class="btn btn-danger btn-sm btn-circle deletePerumahan"><i class="fa fa-trash"></i>

@@ -131,7 +131,7 @@ class Penilaian extends CI_Controller {
 
 	private function _getPerangkingan()
 	{
-		$p1 = $this->model->getPerangkingan()->row();
+		$p1 = $this->model->getPerangkingan()->result();
 		return $p1;
 	}
 

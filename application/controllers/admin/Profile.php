@@ -13,7 +13,10 @@ class Profile extends CI_Controller {
 
 	public function index()
 	{
+		
+
 		$data['title']= 'Profile';
+		$data['admin']= $this->db->get('admin')->result();;
 		$this->template->load('admin/template','admin/profile', $data);
 	}
 

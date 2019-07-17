@@ -22,6 +22,8 @@ class M_penilaian extends CI_Model {
 		$this->db->join('kriteria_keamanan c4', 'c4.id_kriteria = penilaian.C4');
 		$this->db->join('kriteria_fasilitas c5', 'c5.id_kriteria = penilaian.C5');
 
+		$this->db->order_by('p.nama_perumahan', 'desc');
+
 		return $this->db->get();
 	}
 
@@ -77,7 +79,7 @@ class M_penilaian extends CI_Model {
 
 	public function getPerangkingan()
 	{
-		return $this->db->select('nama_perumahan, nilai')->from('perangkingan')->order_by('nilai', 'desc')->limit(1)->get();
+		return $this->db->select('nama_perumahan, nilai')->from('perangkingan')->order_by('nilai', 'desc')->limit(3)->get();
 	}
 
 }

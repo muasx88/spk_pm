@@ -13,6 +13,12 @@ class Pages extends CI_Controller {
 		$this->template->load('layout','home', $data);
 	}
 
+	public function perumahan()
+	{
+		$data['title']= 'Perumahan';
+		$this->template->load('layout','perumahan', $data);
+	}
+
 	public function about()
 	{
 		$data['title']= 'About Us';

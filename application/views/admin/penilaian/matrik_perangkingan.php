@@ -37,12 +37,50 @@ if (count($data_kecocokan) > 0) { ?>
 		</div>
 	</div>
 
-	<div class="card shadow mb-3">
-		<div class="card-body">
-			<h3>Kesimpulan</h3>
-			<p>Dari hasil perhitungan rangking diatas, maka pemilihan Perumahan Muslim terbaik adalah <strong><?= $rangking->nama_perumahan ?></strong> dengan nilai <strong><?= $rangking->nilai ?></strong></p>
+	<div class="row">
+		<div class="col">
+			<div class="card shadow mb-3">
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>No</th>
+									<th>Perumahan</th>
+									<th>Nilai</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php $no=1;
+								foreach ($rangking as $r) { ?>
+									<tr>
+										<td><?= $no++ ?>.</td>
+										<td><?= $r->nama_perumahan ?></td>
+										<td><?= $r->nilai ?></td>
+									</tr>
+								<?php }
+								?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card shadow mb-3">
+				<div class="card-body">
+					<h3>Kesimpulan</h3>
+					<?php 
+					foreach ($rangking as $r) { ?>
+						<p>Dari hasil perhitungan rangking diatas, maka pemilihan Perumahan Muslim terbaik adalah <strong><?= $r->nama_perumahan ?></strong> dengan nilai <strong><?= $r->nilai ?></strong></p>
+						<?php break; ?>
+					<?php }
+					?>
+				</div>
+			</div>
 		</div>
 	</div>
+
 
 
 
