@@ -43,6 +43,11 @@ class Perumahan extends CI_Controller {
 		if (empty($id)) {
 			$data = array(
 				'nama_perumahan' => $this->input->post("namaPerumahan"),
+				'harga' => $this->input->post("hargaPerumahan"),
+				'jarak_kota' => $this->input->post("jkPerumahan"),
+				'jarak_pasar' => $this->input->post("jpPerumahan"),
+				'keamanan' => $this->input->post("keaPerumahan"),
+				'fasilitas' => $this->input->post("fasPerumahan"),
 				'alamat_perumahan' => $this->input->post("alamatPerumahan")
 			);
 
@@ -54,6 +59,11 @@ class Perumahan extends CI_Controller {
 		}else{
 			$data = array(
 				'nama_perumahan' => $this->input->post("namaPerumahan"),
+				'harga' => $this->input->post("hargaPerumahan"),
+				'jarak_kota' => $this->input->post("jkPerumahan"),
+				'jarak_pasar' => $this->input->post("jpPerumahan"),
+				'keamanan' => $this->input->post("keaPerumahan"),
+				'fasilitas' => $this->input->post("fasPerumahan"),
 				'alamat_perumahan' => $this->input->post("alamatPerumahan")
 			);
 
@@ -72,6 +82,11 @@ class Perumahan extends CI_Controller {
 			$res = array(
 				'id_perumahan' => $dt['id_perumahan'],
 				'nama_perumahan'=>$dt['nama_perumahan'],
+				'harga'=>$dt['harga'],
+				'jarak_kota'=>$dt['jarak_kota'],
+				'jarak_pasar'=>$dt['jarak_pasar'],
+				'keamanan'=>$dt['keamanan'],
+				'fasilitas'=>$dt['fasilitas'],
 				'alamat_perumahan'=> $dt['alamat_perumahan'] 
 			);
 		}

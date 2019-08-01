@@ -7,7 +7,7 @@
 				Perumahan muslim Yogyakarta merupakan perumahan pada umumnya. Pembeda dengan perumahan umum lainnya yaitu terkhusus untuk umat muslim dan menjauhi riba.
 			</p>
 			<p class="font-weight-light" style="font-size: 25px">
-				Kami berusaha memberikan informasi terkait perumahan muslim yang terbaik dengan menggunakan perhitungan <i>Simple Addictive Weight</i>.
+				Kami berusaha memberikan informasi terkait perumahan muslim terbaik yang ada di Yogyakarta dengan menggunakan perhitungan <i>Simple Addictive Weighting</i>.
 			</p>
 		</div>
 		<div>

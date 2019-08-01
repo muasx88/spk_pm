@@ -60,6 +60,58 @@
 						<input type="text" name="namaPerumahan" id="namaPerumahan" class="form-control">
 					</div>
 					<div class="form-group">
+						<label for="hargaPerumahan">Harga</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+				         	<div class="input-group-text">Rp.</div>
+				        	</div>
+							<input type="number" name="hargaPerumahan" id="hargaPerumahan" class="form-control">
+							
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="jkPerumahan">Jarak Pusat Kota</label>
+								<div class="input-group">
+									<input type="text" name="jkPerumahan" id="jkPerumahan" class="form-control">
+									<div class="input-group-prepend">
+						         	<div class="input-group-text">Km</div>
+						        	</div>
+								</div>
+							</div>
+							
+						</div>
+						<div class="col">
+							<div class="form-group">
+								<label for="jpPerumahan">Jarak Pasar</label>
+								<div class="input-group">
+									<input type="number" name="jpPerumahan" id="jpPerumahan" class="form-control">
+									<div class="input-group-prepend">
+						         	<div class="input-group-text">Km</div>
+						        	</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="keaPerumahan">Keamanan</label>
+								<input type="number" name="keaPerumahan" id="keaPerumahan" class="form-control">
+							</div>
+							
+						</div>
+						<div class="col">
+							<div class="form-group">
+								<label for="fasPerumahan">Fasilitas</label>
+								<input type="number" name="fasPerumahan" id="fasPerumahan" class="form-control">
+							</div>
+							
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="alamatPerumahan">Alamat</label>
 						<textarea type="text" name="alamatPerumahan" id="alamatPerumahan" class="form-control"></textarea>
 					</div>
@@ -107,14 +159,24 @@
 	$("#formPerumahan").submit(function(e) {
 		e.preventDefault();
 		var namaPerumahan = $("#namaPerumahan").val();
+		var hargaPerumahan = $("#hargaPerumahan").val();
+		var jkPerumahan = $("#jkPerumahan").val();
+		var jpPerumahan = $("#jpPerumahan").val();
+		var keaPerumahan = $("#keaPerumahan").val();
+		var fasPerumahan = $("#fasPerumahan").val();
 		var alamatPerumahan = $("#alamatPerumahan").val();
 
-		if (namaPerumahan == '' && alamatPerumahan == '') {
+		if (namaPerumahan == '' && alamatPerumahan == '' && hargaPerumahan=='' && jkPerumahan=='' && jpPerumahan=='' && keaPerumahan=='' && fasPerumahan=='') {
 			alert("Isi semua data!");
 		}else{
 			var data = {
 				"idPerumahan": $("#idPerumahan").val(),
 				"namaPerumahan" : namaPerumahan,
+				"hargaPerumahan" : hargaPerumahan,
+				"jkPerumahan" : jkPerumahan,
+				"jpPerumahan" : jpPerumahan,
+				"keaPerumahan" : keaPerumahan,
+				"fasPerumahan" : fasPerumahan,
 				"alamatPerumahan" : alamatPerumahan,
 			}
 
@@ -142,6 +204,11 @@
 		$.get('<?php echo base_url('admin/perumahan/getPerumahanById/') ?>'+id, function(data) {
 			$("#idPerumahan").val(data.id_perumahan)
 			$("#namaPerumahan").val(data.nama_perumahan)
+			$("#hargaPerumahan").val(data.harga)
+			$("#jkPerumahan").val(data.jarak_kota)
+			$("#jpPerumahan").val(data.jarak_pasar)
+			$("#keaPerumahan").val(data.keamanan)
+			$("#fasPerumahan").val(data.fasilitas)
 			$("#alamatPerumahan").val(data.alamat_perumahan)
 		},'json');
 		$("#titlePerumahan span").text("Edit");
@@ -170,6 +237,11 @@
 	function reset_data_perumahan(){
 		$("#idPerumahan").val("");
 		$("#namaPerumahan").val("");
+		$("#hargaPerumahan").val("");
+		$("#jkPerumahan").val("");
+		$("#jpPerumahan").val("");
+		$("#keaPerumahan").val("");
+		$("#fasPerumahan").val("");
 		$("#alamatPerumahan").val("");
 	}
 
