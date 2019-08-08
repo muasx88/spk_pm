@@ -10,7 +10,7 @@
 						<div class="col-md-8 mb-2 bg-secondary p-4">
 							<div class="row mb-3">
 								<div class="col-md-4">
-									<i class="fas fa-coins"></i> Rp.<?= $p->harga ?>
+									<i class="fas fa-coins"></i> Rp.<?= number_format($p->harga)  ?>
 								</div>
 								<div class="col-md-4">
 									<i class="fa fa-user-secret"></i>&nbsp;<?= $p->keamanan ?> Orang
