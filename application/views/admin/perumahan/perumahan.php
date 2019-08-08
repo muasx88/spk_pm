@@ -95,21 +95,15 @@
 							
 						</div>
 					</div>
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="keaPerumahan">Keamanan</label>
-								<input type="number" name="keaPerumahan" id="keaPerumahan" class="form-control">
-							</div>
-							
-						</div>
-						<div class="col">
-							<div class="form-group">
-								<label for="fasPerumahan">Fasilitas</label>
-								<input type="number" name="fasPerumahan" id="fasPerumahan" class="form-control">
-							</div>
-							
-						</div>
+					<div class="form-group">
+						<label for="keaPerumahan">Keamanan</label>
+						<input type="number" name="keaPerumahan" id="keaPerumahan" class="form-control">
+					</div>
+					
+					<div class="form-group">
+						<label for="fasPerumahan">Fasilitas</label>
+						<textarea name="fasPerumahan" id="fasPerumahan" class="form-control"></textarea>
+						<!-- <input type="number" name="fasPerumahan" id="fasPerumahan" class="form-control"> -->
 					</div>
 					<div class="form-group">
 						<label for="alamatPerumahan">Alamat</label>
